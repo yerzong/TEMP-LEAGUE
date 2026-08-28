@@ -29,6 +29,7 @@ Toda la planeación vive en [`/docs`](./docs). Léela en este orden:
 | 08 | [Spec Admin Web](./docs/08-admin-web-spec.md) | Módulos y permisos de la consola admin/staff |
 | 09 | [Reglas de negocio](./docs/09-reglas-negocio.md) | Roles, unicidad, 1-equipo-por-jugador, ventana 72h, flujos |
 | 10 | [Notificaciones y automatización](./docs/10-notificaciones-y-automatizacion.md) | Push (FCM) y automatización con n8n |
+| 11 | [Flujo de generación de eventos](./docs/11-flujo-generacion-eventos.md) | Motor de formatos: sorteo, bracket/tabla, calendario auto + ajuste |
 
 Las decisiones de arquitectura relevantes se registran como ADRs en [`/docs/adr`](./docs/adr):
 - [ADR-0001](./docs/adr/0001-motor-de-formatos.md) — Motor de formatos de evento

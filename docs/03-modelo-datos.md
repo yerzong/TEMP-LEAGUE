@@ -143,6 +143,7 @@ Diseño centrado en dos ideas:
 | **— Config de día de partido —** | | |
 | checkinAbreMin | int | minutos antes en que abre el check-in (ej. 30) |
 | walkoverTrasMin | int | minutos de tolerancia antes de walkover (ej. 15) |
+| campeonEquipoId | UUID? | campeón del evento; se fija al pasar a `FINALIZADO` |
 | creadoEn | timestamp | — |
 
 ### Inscripción (Equipo ↔ Evento)
@@ -275,6 +276,24 @@ Diseño centrado en dos ideas:
 | detalle | json? | antes/después |
 | creadoEn | timestamp | — |
 
+### RankingEquipo (derivado/materializado, cross-evento)
+| Campo | Tipo | Notas |
+|-------|------|-------|
+| id | UUID | PK |
+| equipoId | UUID | FK → Equipo |
+| partidosJugados | int | acumulado en eventos finalizados |
+| victorias | int | — |
+| derrotas | int | — |
+| difMapas | int | mapas ganados − perdidos |
+| puntos | int | esquema configurable (ej. +3 por victoria de serie) |
+| winRate | decimal | % de victorias |
+| tier | enum? | `TIER_1`, `TIER_2`, `TIER_3` (null = sin clasificar) |
+| actualizadoEn | timestamp | recalculado al finalizar cada evento |
+
+> Se recalcula con un job al finalizar eventos. Salón de la Fama y palmarés son **consultas
+> derivadas** (eventos `FINALIZADO` + `campeonEquipoId`), sin entidad propia. Ver
+> [14-ranking-salon-de-la-fama-y-palmares.md](./14-ranking-salon-de-la-fama-y-palmares.md).
+
 ## Enums (contratos compartidos — `packages/shared`)
 
 ```
@@ -285,6 +304,7 @@ EstadoInvitacion = PENDIENTE | ACEPTADA | RECHAZADA | EXPIRADA
 TipoSancion      = ADVERTENCIA | SUSPENSION_TEMPORAL | EXPULSION_EVENTO | BANEO_PERMANENTE
 SeveridadSancion = LEVE | MEDIA | GRAVE
 EstadoReporte    = ABIERTO | EN_REVISION | RESUELTO | DESCARTADO
+Tier             = TIER_1 | TIER_2 | TIER_3
 AuthProvider     = GOOGLE | APPLE | XBOX | PASSWORD
 RedSocialPlataf. = TWITTER | FACEBOOK | INSTAGRAM | TWITCH | YOUTUBE | TIKTOK | OTRA
 TipoEvento       = TEMPORADA | RELAMPAGO

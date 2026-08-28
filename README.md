@@ -32,6 +32,7 @@ Toda la planeación vive en [`/docs`](./docs). Léela en este orden:
 | 11 | [Flujo de generación de eventos](./docs/11-flujo-generacion-eventos.md) | Motor de formatos: sorteo, bracket/tabla, calendario auto + ajuste |
 | 12 | [Formato de partido y día de partido](./docs/12-formato-partido-y-dia-de-partido.md) | Roster configurable, best-of por mapa, check-in/walkover, invitaciones |
 | 13 | [Cuenta, legal y moderación](./docs/13-cuenta-legal-y-moderacion.md) | Privacidad/términos, borrar cuenta, staff/multi-admin, bitácora de conducta |
+| 14 | [Ranking, salón de la fama y palmarés](./docs/14-ranking-salon-de-la-fama-y-palmares.md) | Campeón por evento, salón de la fama, palmarés, ranking/tiers |
 
 Las decisiones de arquitectura relevantes se registran como ADRs en [`/docs/adr`](./docs/adr):
 - [ADR-0001](./docs/adr/0001-motor-de-formatos.md) — Motor de formatos de evento

@@ -75,5 +75,10 @@ Orden de sacrificio, del primero al último en cortarse:
 
 ## Post-lanzamiento (v2 — Temporada 2+)
 
-Estadísticas en vivo, ranking ELO, notificaciones push, chat, perfiles enriquecidos,
-resúmenes de jornada con IA, integración de streaming.
+Estadísticas en vivo, chat, resúmenes de jornada con IA, integración de streaming, pagos
+reales, landing pública.
+
+**Tiers de equipos:** la infraestructura de **ranking** captura datos desde T1, pero los
+**tiers** (Tier 1/2/3) solo son significativos con historial → se activan de forma real en
+**T2** para emparejamientos balanceados. Ver
+[14-ranking-salon-de-la-fama-y-palmares.md](./14-ranking-salon-de-la-fama-y-palmares.md).

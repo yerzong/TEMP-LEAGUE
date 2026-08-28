@@ -66,6 +66,8 @@ Se muestra la primera vez o si falta info. Campos:
   cuota (si aplica), equipos inscritos.
 - **Bracket** (eliminación) o **Tabla de posiciones** (liga), según formato.
 - **Calendario de partidos** del evento (con canal de transmisión y enlace al stream).
+- **🏆 Salón de la Fama**: campeones de eventos pasados (equipo, evento, fecha).
+- **📊 Ranking global**: clasificación de equipos y su **tier** (se llena con el tiempo).
 
 ### 7. 🛡️ Mi Equipo
 Flujos:
@@ -77,6 +79,8 @@ Flujos:
     claros si el jugador está bloqueado).
 - **Ver roster**: miembros, capitán, roles (titular/suplente/coach).
 - **Gestión (capitán)**: expulsar miembro, **transferir capitanía**.
+- **Perfil público del equipo/org**: roster, **palmarés** (trofeos ganados), ranking/tier,
+  redes y próximos partidos — visible para todos.
 - **Inscribir equipo a un evento** (solo capitán/dueño):
   - Elegir evento con inscripciones abiertas → confirmar → estado `PENDIENTE`.
   - Si el evento tiene **cuota**, mostrar el paso de pago (v2).
@@ -91,6 +95,7 @@ Flujos:
 
 ### 9. 👤 Perfil
 - Ver/editar datos (nickname, gamertag, avatar, **redes sociales**).
+- **Palmarés del jugador**: eventos ganados y participaciones.
 - Mis equipos / mi organización (si soy dueño).
 - Estado de verificación (teléfono) y de perfil completo.
 - **Ajustes de notificaciones** (qué push quiero recibir).

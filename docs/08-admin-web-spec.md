@@ -41,11 +41,13 @@ Herramienta de **operación** de la liga. La usan `ADMIN` (control total) y `STA
 - **Asignar canal de transmisión** a cada partido.
 
 ### Resultados (STAFF/CASTER/ADMIN) — núcleo operativo
-- Lista de partidos `PROGRAMADO` / `EN_VIVO`.
-- **Capturar marcador** → marcar `FINALIZADO`.
-  - Guarda `reportadoPorId` (quién capturó) y `canalTransmisionId`.
+- Lista de partidos `PROGRAMADO` / `EN_VIVO`, con estado de **check-in** de cada equipo.
+- **Captura por mapa** (Best-of): por cada mapa → mapa + modo + ganador. Al alcanzar los
+  mapas necesarios, la serie se marca `FINALIZADO`.
+  - Guarda `reportadoPorId` y `canalTransmisionId`.
   - Dispara: avance de bracket / recálculo de tabla + notificaciones + webhook n8n.
-- (Opción futura) marcar `EN_VIVO` al iniciar transmisión.
+- **Walkover:** el sistema lo marca automáticamente por no-show; el admin puede anular/ajustar.
+- **Corrección:** solo `ADMIN` puede corregir una serie ya cerrada (sin flujo de disputa).
 
 ### Canales de transmisión (ADMIN)
 - CRUD de canales de la liga (nombre, plataforma Twitch/YouTube, URL, activo).

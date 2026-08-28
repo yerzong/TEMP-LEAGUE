@@ -62,7 +62,8 @@ Se muestra la primera vez o si falta info. Campos:
 ### 6. 🏆 Eventos
 - **Lista de eventos**: filtros por tipo (Temporada / Relámpago ⚡) y estado
   (Inscripciones / En curso / Finalizado). Muestra si es gratis o con cuota.
-- **Detalle de evento**: info, formato, fechas, cupo, equipos inscritos.
+- **Detalle de evento**: info, formato, fechas, cupo, **reglamento**, **premio** (si hay),
+  cuota (si aplica), equipos inscritos.
 - **Bracket** (eliminación) o **Tabla de posiciones** (liga), según formato.
 - **Calendario de partidos** del evento (con canal de transmisión y enlace al stream).
 
@@ -70,10 +71,12 @@ Se muestra la primera vez o si falta info. Campos:
 Flujos:
 - **Crear organización**: nombre + tag (validación de unicidad en vivo) + logo.
 - **Crear equipo/roster** dentro de la org (ej. "Main").
-- **Invitar jugadores**: por búsqueda/nickname o código de invitación.
+- **Invitar jugadores**: por búsqueda/nickname o **código de invitación**, con rol
+  propuesto (jugador / suplente / coach). El invitado **acepta**.
   - Respeta reglas: "1 equipo activo" y **ventana de transferencia 72 h** (con mensajes
     claros si el jugador está bloqueado).
-- **Ver roster**: miembros, capitán, roles.
+- **Ver roster**: miembros, capitán, roles (titular/suplente/coach).
+- **Gestión (capitán)**: expulsar miembro, **transferir capitanía**.
 - **Inscribir equipo a un evento** (solo capitán/dueño):
   - Elegir evento con inscripciones abiertas → confirmar → estado `PENDIENTE`.
   - Si el evento tiene **cuota**, mostrar el paso de pago (v2).
@@ -81,8 +84,10 @@ Flujos:
 
 ### 8. ⚔️ Partidos
 - **Mis próximos partidos**: rival, fecha/hora, evento, **canal de transmisión**.
-- **Resultados**: historial de partidos jugados con marcador.
-- **Detalle de partido**: equipos, ronda/jornada, marcador, enlace al stream.
+- **Check-in**: botón para confirmar asistencia cuando abre la ventana (evita walkover).
+- **Resultados**: historial con marcador de serie.
+- **Detalle de partido**: equipos, ronda/jornada, **Best-of con mapas** (mapa+modo+ganador),
+  marcador de serie, estado de check-in y enlace al stream.
 
 ### 9. 👤 Perfil
 - Ver/editar datos (nickname, gamertag, avatar, **redes sociales**).

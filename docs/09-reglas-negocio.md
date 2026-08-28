@@ -115,6 +115,10 @@ BORRADOR ──► INSCRIPCIONES ──► EN_CURSO ──► FINALIZADO
 - Al marcar el partido `FINALIZADO`:
   - **Eliminación:** el ganador avanza a `siguientePartidoId`.
   - **Liga:** se recalcula la tabla de posiciones.
+- **Sin disputa:** lo capturado por el staff es **definitivo**; solo un **admin** puede
+  **corregir** un error de captura.
+- **Best-of por mapa · check-in · walkover:** ver detalle en
+  [12-formato-partido-y-dia-de-partido.md](./12-formato-partido-y-dia-de-partido.md).
 
 ### Transmisiones
 - La liga tiene **varios canales** (Twitch/YouTube). Cada partido se asigna a un canal.

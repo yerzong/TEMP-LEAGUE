@@ -129,7 +129,20 @@ Diseño centrado en dos ideas:
 | estado | enum | `BORRADOR`, `INSCRIPCIONES`, `EN_CURSO`, `FINALIZADO` |
 | cuotaEntrada | decimal | `0` = gratis; > 0 = requiere pago |
 | moneda | string | ej. "MXN" (aplica si hay cuota) |
+| premio | decimal? | bolsa/premio a mostrar (opcional) |
+| reglamento | text? | reglas del evento (texto o URL), visible en la app |
 | maxEquipos | int | cupo |
+| **— Config de roster —** | | *(por evento, roster configurable)* |
+| rosterMin | int | mínimo de titulares (ej. 5) |
+| rosterMax | int | máximo de titulares |
+| maxSuplentes | int | banca permitida |
+| permiteCoach | bool | permite coach/manager |
+| **— Config de partido —** | | |
+| bestOf | int | 1, 3, 5, 7 (mapas por serie) |
+| modosDisponibles | string[] | modos permitidos (lista editable: Ejecución, Rey de la Colina, Control…) |
+| **— Config de día de partido —** | | |
+| checkinAbreMin | int | minutos antes en que abre el check-in (ej. 30) |
+| walkoverTrasMin | int | minutos de tolerancia antes de walkover (ej. 15) |
 | creadoEn | timestamp | — |
 
 ### Inscripción (Equipo ↔ Evento)
@@ -152,12 +165,43 @@ Diseño centrado en dos ideas:
 | equipoVisitanteId | UUID? | null hasta conocerse |
 | ronda | int | ronda (elim.) / jornada (liga) |
 | fechaProgramada | timestamp? | — |
-| marcadorLocal | int? | — |
-| marcadorVisitante | int? | — |
+| marcadorLocal | int? | mapas ganados por local (derivado de PartidoMapa) |
+| marcadorVisitante | int? | mapas ganados por visitante (derivado) |
 | estado | enum | `PROGRAMADO`, `EN_VIVO`, `FINALIZADO` |
+| resultadoTipo | enum | `NORMAL`, `WALKOVER`, `DOBLE_FORFEIT` |
+| checkinLocal | timestamp? | cuándo hizo check-in el equipo local |
+| checkinVisitante | timestamp? | cuándo hizo check-in el visitante |
 | siguientePartidoId | UUID? | avance del ganador (solo eliminación) |
 | reportadoPorId | UUID? | staff/caster/admin que capturó el resultado |
 | canalTransmisionId | UUID? | canal donde se transmite |
+
+### PartidoMapa (mapa dentro de la serie Best-of)
+| Campo | Tipo | Notas |
+|-------|------|-------|
+| id | UUID | PK |
+| partidoId | UUID | FK → Partido |
+| orden | int | número de mapa en la serie (1..bestOf) |
+| mapa | string | nombre del mapa |
+| modo | string | modo jugado (de `modosDisponibles` del evento) |
+| ganadorEquipoId | UUID? | equipo que ganó el mapa |
+| marcadorLocal | int? | marcador del mapa (opcional) |
+| marcadorVisitante | int? | — |
+
+> El marcador de serie (`Partido.marcadorLocal/Visitante`) = conteo de mapas ganados.
+> La serie termina cuando un equipo alcanza `ceil(bestOf/2)` mapas.
+
+### InvitacionEquipo
+| Campo | Tipo | Notas |
+|-------|------|-------|
+| id | UUID | PK |
+| equipoId | UUID | FK → Equipo |
+| codigo | string? | código de invitación (alternativa a invitar por nickname) |
+| usuarioId | UUID? | invitado directo (si aplica) |
+| rolPropuesto | enum | `JUGADOR`, `SUPLENTE`, `COACH` |
+| estado | enum | `PENDIENTE`, `ACEPTADA`, `RECHAZADA`, `EXPIRADA` |
+| creadoEn | timestamp | — |
+
+> El invitado **acepta** para unirse (respetando "1 equipo activo" + ventana 72 h).
 
 ### CanalTransmisión
 | Campo | Tipo | Notas |
@@ -182,7 +226,9 @@ Diseño centrado en dos ideas:
 
 ```
 RolGlobal        = PLAYER | STAFF | ADMIN
-RolEquipo        = CAPITAN | JUGADOR
+RolEquipo        = CAPITAN | JUGADOR | SUPLENTE | COACH
+ResultadoTipo    = NORMAL | WALKOVER | DOBLE_FORFEIT
+EstadoInvitacion = PENDIENTE | ACEPTADA | RECHAZADA | EXPIRADA
 AuthProvider     = GOOGLE | APPLE | XBOX | PASSWORD
 RedSocialPlataf. = TWITTER | FACEBOOK | INSTAGRAM | TWITCH | YOUTUBE | TIKTOK | OTRA
 TipoEvento       = TEMPORADA | RELAMPAGO

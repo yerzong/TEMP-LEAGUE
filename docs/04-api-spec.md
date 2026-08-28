@@ -53,8 +53,11 @@ API REST, JSON, prefijo `/api/v1`. Autenticación por **JWT** en header
 | POST | `/orgs/:orgId/teams` | owner | Crear equipo/roster en la org |
 | GET | `/teams/:id` | público | Detalle de equipo + roster |
 | PATCH | `/teams/:id` | capitán/owner | Editar equipo |
-| POST | `/teams/:id/members` | capitán | Invitar/agregar jugador (valida 1-equipo + ventana 72h) |
-| DELETE | `/teams/:id/members/:userId` | capitán | Quitar jugador (activa ventana 72h) |
+| POST | `/teams/:id/invitations` | capitán | Crear invitación (código o por nickname; rol propuesto) |
+| POST | `/invitations/:id/accept` | invitado | Aceptar invitación (valida 1-equipo + ventana 72h) |
+| POST | `/invitations/:id/reject` | invitado | Rechazar invitación |
+| DELETE | `/teams/:id/members/:userId` | capitán | Expulsar jugador (activa ventana 72h) |
+| POST | `/teams/:id/transfer-captain` | capitán | Transferir capitanía a otro miembro |
 
 ## 🏆 Eventos
 
@@ -82,9 +85,13 @@ API REST, JSON, prefijo `/api/v1`. Autenticación por **JWT** en header
 | Método | Ruta | Rol | Descripción |
 |--------|------|-----|-------------|
 | GET | `/events/:id/matches` | público | Todos los partidos del evento (bracket/calendario) |
-| GET | `/matches/:id` | público | Detalle de un partido |
-| PATCH | `/matches/:id/schedule` | admin | Programar fecha/hora |
-| PATCH | `/matches/:id/result` | admin | Capturar marcador → propaga ganador / recalcula tabla |
+| GET | `/matches/:id` | público | Detalle de un partido (incluye mapas de la serie) |
+| PATCH | `/matches/:id/schedule` | admin | Programar fecha/hora + canal |
+| POST | `/matches/:id/checkin` | capitán | Check-in de mi equipo (dentro de la ventana) |
+| POST | `/matches/:id/maps` | staff | Registrar resultado de un mapa (mapa+modo+ganador) |
+| PATCH | `/matches/:id/maps/:mapId` | staff | Corregir un mapa (solo admin corrige serie cerrada) |
+| POST | `/matches/:id/walkover` | admin | Marcar walkover / doble forfeit manual |
+| PATCH | `/matches/:id/result` | staff/admin | Cerrar/ajustar serie (admin corrige si ya cerró) |
 
 ## 📊 Standings (formatos de liga)
 

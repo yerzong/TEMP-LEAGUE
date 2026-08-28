@@ -13,22 +13,29 @@ API REST, JSON, prefijo `/api/v1`. Autenticación por **JWT** en header
 
 ---
 
-## 🔐 Auth (teléfono + SMS OTP)
+## 🔐 Auth (social + email; teléfono por SMS OTP)
 
 | Método | Ruta | Rol | Descripción |
 |--------|------|-----|-------------|
-| POST | `/auth/register` | público | Registro con teléfono → envía SMS OTP |
-| POST | `/auth/otp/verify` | público | Verifica el código OTP → activa cuenta + JWT |
-| POST | `/auth/otp/resend` | público | Reenvía OTP (rate-limited) |
-| POST | `/auth/login` | público | Login (teléfono + contraseña) → JWT |
-| GET | `/auth/me` | autenticado | Perfil del usuario actual |
+| POST | `/auth/oauth/google` | público | Login/registro con Google → JWT |
+| POST | `/auth/oauth/apple` | público | Login/registro con Apple → JWT |
+| POST | `/auth/oauth/xbox` | público | Login/registro con Xbox (trae gamertag) → JWT |
+| POST | `/auth/register` | público | Registro con email + contraseña → JWT |
+| POST | `/auth/login` | público | Login con email + contraseña → JWT |
+| POST | `/auth/password/forgot` | público | Inicia recuperación de contraseña |
+| GET | `/auth/me` | autenticado | Perfil del usuario actual (incluye `perfilCompleto`) |
 
-## 👤 Usuarios
+## 👤 Perfil / Usuarios
 
 | Método | Ruta | Rol | Descripción |
 |--------|------|-----|-------------|
-| GET | `/users/:id` | autenticado | Ver perfil público de un jugador |
-| PATCH | `/users/me` | autenticado | Editar nickname / gamertag / avatar / país |
+| PATCH | `/users/me` | autenticado | Completar/editar perfil (nickname, gamertag, fechaNacimiento, avatar, país) |
+| POST | `/users/me/phone` | autenticado | Registrar teléfono → envía SMS OTP |
+| POST | `/users/me/phone/verify` | autenticado | Verifica OTP del teléfono |
+| POST | `/users/me/phone/resend` | autenticado | Reenvía OTP (rate-limited) |
+| GET | `/users/me/socials` | autenticado | Listar mis redes sociales |
+| PUT | `/users/me/socials` | autenticado | Reemplazar mis redes (plataforma + URL) |
+| GET | `/users/:id` | autenticado | Ver perfil público (incluye redes sociales) |
 
 ## 🏢 Organizaciones
 

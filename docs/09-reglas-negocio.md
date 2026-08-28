@@ -13,13 +13,51 @@ backend y para el diseño de UX.
 
 > Roles a nivel equipo (independientes del rol global): **CAPITAN** y **JUGADOR**.
 
-## Cuentas y verificación
+## Cuentas y acceso
 
-1. **Registro con teléfono + SMS OTP.** No se activa la cuenta hasta verificar el código.
-2. El teléfono es **único** (un teléfono = una cuenta) → reduce cuentas falsas/multi.
-3. Campos de perfil: nickname (obligatorio), gamertag, avatar, país. Gamertag es texto en
-   el MVP (no se valida contra Xbox Live; queda como mejora futura).
-4. OTP: código de 6 dígitos, expira (TTL en Redis), con rate-limit de reenvío.
+### Métodos de acceso
+- **Login social:** Google, Apple y **Xbox**. Un mismo usuario puede vincular varios.
+- **Respaldo:** registro con **email + contraseña**.
+- De Google/Apple llega **correo + nombre**; de **Xbox** además el **gamertag**
+  (se autocompleta). El email es **único** por cuenta.
+
+### "Completa tu perfil" (primera vez)
+Tras el primer acceso, el usuario completa:
+- **Teléfono** (obligatorio) → verificación por **SMS OTP** · usado también para contacto
+  futuro (WhatsApp / emergencias).
+- **Fecha de nacimiento** (obligatoria) → se guarda la fecha, **sin restricción de edad**
+  (solo se recolecta el dato).
+- **Gamertag** (autollenado si entró con Xbox).
+- **Foto de perfil** (opcional).
+- **Redes sociales** (opcionales): se eligen de un listado (Twitter/X, Facebook, Instagram,
+  Twitch, YouTube, TikTok…) + URL/usuario. Varias permitidas.
+
+### OTP
+- Código de 6 dígitos, expira (TTL en Redis), con rate-limit de reenvío.
+- El teléfono es **único** (un teléfono = una cuenta).
+
+## Roles no excluyentes (dueño que también juega)
+
+Un mismo usuario puede llevar **varios "sombreros" a la vez**:
+
+| Sombrero | Nivel | ¿Implica jugar? |
+|----------|-------|-----------------|
+| **Dueño de organización** | Org (marca) | ❌ No — administra la marca y sus rosters |
+| **Capitán / Jugador** | Equipo/Roster | ✅ Sí — compite (**máx. 1 equipo activo**) |
+| **Rol global** (PLAYER/STAFF/ADMIN) | Plataforma | Permisos del sistema |
+
+- Ser **dueño no consume** el cupo de "1 equipo activo"; **jugar sí**.
+- Un usuario puede ser dueño de "Zurco Esports" **y** jugar en su roster "Zurco Main"
+  (su único equipo activo), mientras otros rosters de la org los juegan otras personas.
+- Para jugar en otro roster aplican las reglas normales (1 equipo activo + ventana 72 h).
+
+## Requisitos para competir (gating)
+
+- **Solo navegar/ver:** basta con tener cuenta.
+- **Unirse a un equipo o inscribirse a un evento:** requiere **perfil completo mínimo** →
+  **gamertag + teléfono verificado + fecha de nacimiento**. Si falta algo, la app envía a
+  "Completa tu perfil" antes de permitir la acción (`perfilCompleto = true`).
+- Foto de perfil y redes sociales **nunca** son requisito.
 
 ## Organizaciones, equipos y membresía
 
@@ -116,7 +154,8 @@ transferencia.
 
 ## Resumen de invariantes (para tests)
 
-- [ ] Teléfono único y verificado antes de operar.
+- [ ] Email único por cuenta; teléfono único y verificado por OTP.
+- [ ] No se permite unirse a equipo / inscribirse sin `perfilCompleto = true`.
 - [ ] Nombre/tag de org únicos (case-insensitive).
 - [ ] Un usuario nunca en dos equipos activos.
 - [ ] No unirse a un equipo si `transferLockUntil` está en el futuro.

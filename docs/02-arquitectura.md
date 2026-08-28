@@ -66,7 +66,9 @@
 3. **Motor de formatos en el backend** — Strategy por `formato` de evento. Ver
    [ADR-0001](./adr/0001-motor-de-formatos.md).
 4. **Stack TypeScript end-to-end** — ver [ADR-0002](./adr/0002-stack-typescript.md).
-5. **Auth con JWT + verificación por SMS OTP** al registrarse.
+5. **Auth con JWT.** Login social (Google/Apple/Xbox) + respaldo email/contraseña; el
+   **teléfono** se verifica por **SMS OTP** en "Completa tu perfil". Ver
+   [ADR-0003](./adr/0003-auth-social-y-perfil.md).
 6. **Automatización desacoplada con n8n** — el backend emite webhooks/eventos; n8n hace el
    trabajo de integración (Discord, redes, email) sin acoplar el core.
 

@@ -9,8 +9,10 @@ equipo, se inscribe y sigue todo.
 ```
 Splash
  └─ Bienvenida (branding)
-     ├─ Registro ──► Verificación SMS OTP ──► Completar perfil ──► [Home]
-     └─ Login ─────────────────────────────────────────────────► [Home]
+     ├─ Continuar con Google / Apple / Xbox ─┐
+     ├─ Registro con email + contraseña ─────┤
+     │                                        ├─ (1ª vez) Completa tu perfil ─► [Home]
+     └─ Iniciar sesión (email/contraseña) ───┘        └─ (ya completo) ──────► [Home]
 
 [Home / Tabs]
  ├─ 🏠 Inicio       (dashboard)
@@ -24,46 +26,47 @@ Splash
 
 ### 1. Splash + Bienvenida
 - Logo Temp League, tema visual Gears/E-Day.
-- CTA: **Crear cuenta** / **Iniciar sesión**.
+- Botones: **Continuar con Google**, **Continuar con Apple**, **Continuar con Xbox**,
+  y **Registrarme con email** / **Iniciar sesión**.
 
-### 2. Registro
-Campos:
-- **Teléfono** (obligatorio, con lada de país) → se usa para SMS OTP.
-- **Contraseña** (obligatoria).
-- Aceptar términos y privacidad.
+### 2. Acceso social / email
+- **Social (Google/Apple/Xbox):** OAuth; traemos correo + nombre (y **gamertag** si es Xbox).
+- **Email + contraseña:** registro/login clásico de respaldo.
+- Aceptar términos y privacidad en el primer acceso.
 
-> El teléfono es único; si ya existe, se ofrece iniciar sesión.
-
-### 3. Verificación SMS OTP
-- Input de **código de 6 dígitos**.
-- Reenviar código (con cooldown / rate-limit).
-- Al validar → continúa a completar perfil.
-
-### 4. Completar perfil
-Campos:
+### 3. Completa tu perfil (primera vez)
+Se muestra la primera vez o si falta info. Campos:
 - **Nickname** (obligatorio, visible en la liga).
-- **Gamertag** (Xbox — texto en MVP).
-- **Avatar / foto de perfil** (opcional, subir imagen).
+- **Teléfono** (obligatorio) → **verificación por SMS OTP** (input de 6 dígitos, reenvío
+  con cooldown). Usado también para contacto futuro (WhatsApp/emergencias).
+- **Fecha de nacimiento** (obligatoria; sin restricción de edad).
+- **Gamertag** (autollenado si entró con Xbox).
+- **Foto de perfil** (opcional).
+- **Redes sociales** (opcionales): elegir plataforma de un listado + pegar URL/usuario.
 - **País** (LATAM).
 
-### 5. Login
-- Teléfono + contraseña.
-- Recuperar acceso (vía OTP).
+> **Gating:** para **unirse a un equipo o inscribirse a un evento** el perfil debe estar
+> completo (gamertag + teléfono verificado + fecha de nacimiento). Si falta algo, se
+> redirige aquí antes de permitir la acción.
 
-### 6. 🏠 Inicio (dashboard)
+### 4. Iniciar sesión (retorno)
+- Con el mismo método usado al registrarse (social o email/contraseña).
+- Recuperar contraseña (para el método email).
+
+### 5. 🏠 Inicio (dashboard)
 - **Próximo(s) partido(s)** de mi equipo (rival, fecha, canal de transmisión).
 - **Eventos activos** / con inscripciones abiertas (acceso rápido).
 - Estado de **mi equipo** de un vistazo.
 - Accesos directos: inscribirme, ver bracket, etc.
 
-### 7. 🏆 Eventos
+### 6. 🏆 Eventos
 - **Lista de eventos**: filtros por tipo (Temporada / Relámpago ⚡) y estado
   (Inscripciones / En curso / Finalizado). Muestra si es gratis o con cuota.
 - **Detalle de evento**: info, formato, fechas, cupo, equipos inscritos.
 - **Bracket** (eliminación) o **Tabla de posiciones** (liga), según formato.
 - **Calendario de partidos** del evento (con canal de transmisión y enlace al stream).
 
-### 8. 🛡️ Mi Equipo
+### 7. 🛡️ Mi Equipo
 Flujos:
 - **Crear organización**: nombre + tag (validación de unicidad en vivo) + logo.
 - **Crear equipo/roster** dentro de la org (ej. "Main").
@@ -76,14 +79,15 @@ Flujos:
   - Si el evento tiene **cuota**, mostrar el paso de pago (v2).
 - **Estado de inscripciones**: pendiente / aprobada / rechazada.
 
-### 9. ⚔️ Partidos
+### 8. ⚔️ Partidos
 - **Mis próximos partidos**: rival, fecha/hora, evento, **canal de transmisión**.
 - **Resultados**: historial de partidos jugados con marcador.
 - **Detalle de partido**: equipos, ronda/jornada, marcador, enlace al stream.
 
-### 10. 👤 Perfil
-- Ver/editar datos (nickname, gamertag, avatar).
-- Mis equipos / mi organización.
+### 9. 👤 Perfil
+- Ver/editar datos (nickname, gamertag, avatar, **redes sociales**).
+- Mis equipos / mi organización (si soy dueño).
+- Estado de verificación (teléfono) y de perfil completo.
 - **Ajustes de notificaciones** (qué push quiero recibir).
 - Cerrar sesión.
 

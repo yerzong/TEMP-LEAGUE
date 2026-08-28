@@ -56,8 +56,11 @@ Herramienta de **operación** de la liga. La usan `ADMIN` (control total) y `STA
 - Moderación (renombrar/suspender en caso de abuso).
 
 ### Jugadores (ADMIN)
-- Buscar usuarios, ver equipo/estado, moderar.
-- Ver estado de **ventana de transferencia**.
+- **Ver todos los usuarios**; buscar/filtrar.
+- **Detalle de usuario**: datos (nickname, gamertag, teléfono/verificación, fecha de
+  nacimiento, país), **equipo actual y organización**, estado de **ventana de
+  transferencia**, y sus **redes sociales**.
+- Moderar (suspender, ajustar rol global).
 
 ### (v2) Contenido / IA · Reportes
 - Generar **resúmenes de jornada** para redes.

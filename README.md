@@ -34,6 +34,7 @@ Toda la planeación vive en [`/docs`](./docs). Léela en este orden:
 Las decisiones de arquitectura relevantes se registran como ADRs en [`/docs/adr`](./docs/adr):
 - [ADR-0001](./docs/adr/0001-motor-de-formatos.md) — Motor de formatos de evento
 - [ADR-0002](./docs/adr/0002-stack-typescript.md) — Stack TypeScript end-to-end (NestJS/RN/Prisma)
+- [ADR-0003](./docs/adr/0003-auth-social-y-perfil.md) — Autenticación social + perfil verificado
 
 ---
 

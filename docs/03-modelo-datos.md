@@ -56,17 +56,37 @@ Diseño centrado en dos ideas:
 | Campo | Tipo | Notas |
 |-------|------|-------|
 | id | UUID | PK |
-| telefono | string | **único**; verificado por SMS OTP |
-| telefonoVerificado | bool | true tras validar OTP |
-| email | string? | opcional |
-| passwordHash | string | — |
+| email | string | **único**; de login social o registro email/contraseña |
+| emailVerificado | bool | true si el proveedor social lo verifica o por confirmación |
+| passwordHash | string? | solo si usó registro email + contraseña |
+| authProviders | enum[] | proveedores vinculados: `GOOGLE`, `APPLE`, `XBOX`, `PASSWORD` |
 | nickname | string | nombre visible |
-| gamertag | string? | gamertag de Xbox (texto, MVP no valida con Xbox Live) |
-| avatarUrl | string? | foto de perfil |
+| gamertag | string? | autollenado si entró con Xbox; **requerido para competir** |
+| telefono | string? | **único**; **requerido y verificado** para competir; contacto/WhatsApp |
+| telefonoVerificado | bool | true tras validar SMS OTP |
+| fechaNacimiento | date? | **requerido para competir**; se guarda fecha (no edad); **sin restricción de edad** |
+| avatarUrl | string? | foto de perfil (opcional) |
 | pais | string | LATAM |
+| perfilCompleto | bool | true cuando tiene gamertag + teléfono verificado + fechaNacimiento |
 | rolGlobal | enum | `PLAYER`, `STAFF`, `ADMIN` |
 | transferLockUntil | timestamp? | fin de la ventana de transferencia (72 h) |
 | creadoEn | timestamp | — |
+
+> **Roles no excluyentes:** un mismo usuario puede ser **dueño de organización** (nivel org),
+> **capitán/jugador** de un equipo (nivel equipo, máx. 1 activo) y tener un **rol global**
+> a la vez. Ser dueño **no** consume el cupo de "1 equipo activo"; jugar sí. Ver
+> [reglas de negocio](./09-reglas-negocio.md).
+
+### RedSocialUsuario (perfil, opcional)
+| Campo | Tipo | Notas |
+|-------|------|-------|
+| id | UUID | PK |
+| usuarioId | UUID | FK → Usuario |
+| plataforma | enum | `TWITTER`, `FACEBOOK`, `INSTAGRAM`, `TWITCH`, `YOUTUBE`, `TIKTOK`, `OTRA` |
+| url | string | URL o usuario de la red |
+
+> El usuario elige la plataforma de un listado y pega su URL/usuario. Varias, todas
+> opcionales. Visibles en el detalle de usuario del Admin Web.
 
 ### Organización (marca)
 | Campo | Tipo | Notas |
@@ -161,15 +181,17 @@ Diseño centrado en dos ideas:
 ## Enums (contratos compartidos — `packages/shared`)
 
 ```
-RolGlobal      = PLAYER | STAFF | ADMIN
-RolEquipo      = CAPITAN | JUGADOR
-TipoEvento     = TEMPORADA | RELAMPAGO
-FormatoEvento  = SINGLE_ELIM | DOUBLE_ELIM | ROUND_ROBIN | LEAGUE_PLAYOFFS
-EstadoEvento   = BORRADOR | INSCRIPCIONES | EN_CURSO | FINALIZADO
-EstadoInscrip. = PENDIENTE | APROBADA | RECHAZADA
-PagoEstado     = NO_APLICA | PENDIENTE | PAGADO | FALLIDO | REEMBOLSADO
-EstadoPartido  = PROGRAMADO | EN_VIVO | FINALIZADO
-Plataforma     = TWITCH | YOUTUBE
+RolGlobal        = PLAYER | STAFF | ADMIN
+RolEquipo        = CAPITAN | JUGADOR
+AuthProvider     = GOOGLE | APPLE | XBOX | PASSWORD
+RedSocialPlataf. = TWITTER | FACEBOOK | INSTAGRAM | TWITCH | YOUTUBE | TIKTOK | OTRA
+TipoEvento       = TEMPORADA | RELAMPAGO
+FormatoEvento    = SINGLE_ELIM | DOUBLE_ELIM | ROUND_ROBIN | LEAGUE_PLAYOFFS
+EstadoEvento     = BORRADOR | INSCRIPCIONES | EN_CURSO | FINALIZADO
+EstadoInscrip.   = PENDIENTE | APROBADA | RECHAZADA
+PagoEstado       = NO_APLICA | PENDIENTE | PAGADO | FALLIDO | REEMBOLSADO
+EstadoPartido    = PROGRAMADO | EN_VIVO | FINALIZADO
+Plataforma       = TWITCH | YOUTUBE   (canales de transmisión)
 ```
 
 ## Reglas de integridad clave

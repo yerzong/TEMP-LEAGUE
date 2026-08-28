@@ -52,8 +52,17 @@ temp-league/
 ├── packages/
 │   └── shared/       # Tipos/contratos compartidos (DTOs, enums)
 ├── docs/             # Toda la planeación y documentación
+├── design/           # 🎨 Diseño UI/UX: cerebro, design system, flujos (ver design/README.md)
+├── .claude/          # Agentes de diseño + skills (ux-flow, ui-visual, design-system)
 └── assets/           # Logos, branding, mockups
 ```
+
+## 🎨 Diseño
+
+El trabajo de UI/UX vive en [`/design`](./design), guiado por el **Design Brain**
+([`design/00-design-brain.md`](./design/00-design-brain.md)) como fuente única de verdad.
+Hay 3 agentes especializados (`ux-flow-designer`, `ui-visual-designer`,
+`design-system-architect`) y un skill `design-review`. Figma se integrará después.
 
 ## 🚀 Estado actual
 

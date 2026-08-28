@@ -81,6 +81,6 @@ Mitigación: subir a revisión ~2 semanas antes del 6 oct y correr beta con la c
 ## Estándares técnicos
 
 - **API:** JSON, `camelCase`, prefijo `/api/v1`, errores `{ code, message, details }`.
-- **IDs:** UUID · **Fechas:** ISO-8601 UTC.
+- **IDs:** UUID · **Fechas:** ISO-8601 **UTC** (se muestran en hora local del usuario).
 - **Auth:** JWT (access + refresh); roles `PLAYER`, `STAFF`, `ADMIN`.
 - **Validación:** DTOs con `class-validator` en NestJS.

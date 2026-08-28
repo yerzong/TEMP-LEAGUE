@@ -237,6 +237,44 @@ Diseño centrado en dos ideas:
 | referencia | string | id de la transacción externa |
 | estado | enum | `PENDIENTE`, `PAGADO`, `FALLIDO`, `REEMBOLSADO` |
 
+### Sancion (bitácora de conducta)
+| Campo | Tipo | Notas |
+|-------|------|-------|
+| id | UUID | PK |
+| usuarioId | UUID | FK → Usuario sancionado |
+| tipo | enum | `ADVERTENCIA`, `SUSPENSION_TEMPORAL`, `EXPULSION_EVENTO`, `BANEO_PERMANENTE` |
+| severidad | enum | `LEVE`, `MEDIA`, `GRAVE` |
+| motivo | text | descripción de la falta |
+| eventoId | UUID? | si la sanción aplica a un evento |
+| emitidoPorId | UUID | FK → Usuario (admin) |
+| fechaInicio | timestamp | — |
+| fechaFin | timestamp? | para suspensiones temporales |
+| activa | bool | derivada de tipo/fechaFin |
+
+### Reporte (denuncia de conducta)
+| Campo | Tipo | Notas |
+|-------|------|-------|
+| id | UUID | PK |
+| reportanteId | UUID | FK → Usuario que reporta |
+| reportadoId | UUID | FK → Usuario reportado |
+| partidoId | UUID? | contexto (opcional) |
+| motivo | string | categoría de la falta |
+| descripcion | text? | detalle |
+| evidenciaUrl | string? | screenshot/clip (opcional) |
+| estado | enum | `ABIERTO`, `EN_REVISION`, `RESUELTO`, `DESCARTADO` |
+| resueltoPorId | UUID? | admin que resolvió |
+| creadoEn | timestamp | — |
+
+### RegistroAuditoria (acciones sensibles del staff)
+| Campo | Tipo | Notas |
+|-------|------|-------|
+| id | UUID | PK |
+| actorId | UUID | staff/admin que ejecutó |
+| accion | string | ej. "CAPTURAR_RESULTADO", "APROBAR_INSCRIPCION", "EMITIR_SANCION" |
+| entidad | string | tipo + id afectado |
+| detalle | json? | antes/después |
+| creadoEn | timestamp | — |
+
 ## Enums (contratos compartidos — `packages/shared`)
 
 ```
@@ -244,6 +282,9 @@ RolGlobal        = PLAYER | STAFF | ADMIN
 RolEquipo        = CAPITAN | JUGADOR | SUPLENTE | COACH
 ResultadoTipo    = NORMAL | WALKOVER | DOBLE_FORFEIT
 EstadoInvitacion = PENDIENTE | ACEPTADA | RECHAZADA | EXPIRADA
+TipoSancion      = ADVERTENCIA | SUSPENSION_TEMPORAL | EXPULSION_EVENTO | BANEO_PERMANENTE
+SeveridadSancion = LEVE | MEDIA | GRAVE
+EstadoReporte    = ABIERTO | EN_REVISION | RESUELTO | DESCARTADO
 AuthProvider     = GOOGLE | APPLE | XBOX | PASSWORD
 RedSocialPlataf. = TWITTER | FACEBOOK | INSTAGRAM | TWITCH | YOUTUBE | TIKTOK | OTRA
 TipoEvento       = TEMPORADA | RELAMPAGO

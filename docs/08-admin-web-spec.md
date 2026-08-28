@@ -14,8 +14,11 @@ Herramienta de **operación** de la liga. La usan `ADMIN` (control total) y `STA
      ├─ Resultados         (captura de marcadores)  ← núcleo del STAFF
      ├─ Canales            (transmisiones de la liga)
      ├─ Organizaciones     (marcas y rosters)
-     ├─ Jugadores          (usuarios, moderación)
-     └─ (v2) Contenido/IA  (resúmenes, posts) · Reportes
+     ├─ Jugadores          (usuarios + bitácora de conducta)
+     ├─ Moderación         (reportes y sanciones)
+     ├─ Staff              (invitar/gestionar admins y casters)
+     ├─ Auditoría          (log de acciones sensibles)
+     └─ (v2) Contenido/IA  (resúmenes, posts) · Reportes analíticos
 ```
 
 ## Módulos — detalle
@@ -61,8 +64,23 @@ Herramienta de **operación** de la liga. La usan `ADMIN` (control total) y `STA
 - **Ver todos los usuarios**; buscar/filtrar.
 - **Detalle de usuario**: datos (nickname, gamertag, teléfono/verificación, fecha de
   nacimiento, país), **equipo actual y organización**, estado de **ventana de
-  transferencia**, y sus **redes sociales**.
-- Moderar (suspender, ajustar rol global).
+  transferencia**, **redes sociales** y su **bitácora de conducta** (reportes + sanciones).
+
+### Moderación (ADMIN)
+- **Reportes**: bandeja de denuncias (`ABIERTO`/`EN_REVISION`) → revisar evidencia →
+  resolver (aplicar sanción o descartar).
+- **Sanciones**: emitir/anular sanción a un usuario (advertencia, suspensión temporal,
+  expulsión de evento, baneo permanente) con motivo y severidad.
+- Una sanción activa (suspensión/baneo) **bloquea** competir. Ver
+  [13-cuenta-legal-y-moderacion.md](./13-cuenta-legal-y-moderacion.md).
+
+### Staff (ADMIN)
+- **Invitar por correo** a nuevos miembros de staff y asignar rol (`ADMIN` / `STAFF`).
+- Gestionar/revocar accesos; asignar casters a canales.
+
+### Auditoría (ADMIN)
+- **Log de acciones sensibles** (capturar/corregir resultado, aprobar inscripción, mover
+  fecha, emitir sanción) con autor y fecha.
 
 ### (v2) Contenido / IA · Reportes
 - Generar **resúmenes de jornada** para redes.

@@ -107,6 +107,26 @@ API REST, JSON, prefijo `/api/v1`. Autenticación por **JWT** en header
 |--------|------|-----|-------------|
 | GET | `/events/:id/bracket` | público | Estructura de llaves con avances |
 
+## 🚨 Moderación
+
+| Método | Ruta | Rol | Descripción |
+|--------|------|-----|-------------|
+| POST | `/reports` | autenticado | Reportar conducta (reportado, motivo, evidencia) |
+| GET | `/reports` | admin | Bandeja de reportes (filtro por estado) |
+| PATCH | `/reports/:id` | admin | Resolver/descartar reporte |
+| POST | `/users/:id/sanctions` | admin | Emitir sanción (tipo, severidad, motivo, vigencia) |
+| GET | `/users/:id/sanctions` | admin | Bitácora de conducta del usuario |
+| DELETE | `/sanctions/:id` | admin | Anular sanción |
+
+## 🛠️ Staff / Auditoría
+
+| Método | Ruta | Rol | Descripción |
+|--------|------|-----|-------------|
+| POST | `/staff/invitations` | admin | Invitar staff por correo + rol (ADMIN/STAFF) |
+| GET | `/staff` | admin | Listar staff y sus roles |
+| PATCH | `/staff/:userId` | admin | Cambiar rol / revocar acceso |
+| GET | `/audit-log` | admin | Log de acciones sensibles |
+
 ---
 
 ## Notas de implementación

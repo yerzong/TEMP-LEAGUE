@@ -58,6 +58,9 @@ Un mismo usuario puede llevar **varios "sombreros" a la vez**:
   **gamertag + teléfono verificado + fecha de nacimiento**. Si falta algo, la app envía a
   "Completa tu perfil" antes de permitir la acción (`perfilCompleto = true`).
 - Foto de perfil y redes sociales **nunca** son requisito.
+- Un usuario con **sanción activa** (suspensión temporal o baneo permanente) **no puede**
+  unirse a equipos ni inscribirse/competir. Ver
+  [13-cuenta-legal-y-moderacion.md](./13-cuenta-legal-y-moderacion.md).
 
 ## Organizaciones, equipos y membresía
 

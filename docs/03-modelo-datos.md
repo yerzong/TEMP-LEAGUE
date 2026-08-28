@@ -190,6 +190,21 @@ Diseño centrado en dos ideas:
 > El marcador de serie (`Partido.marcadorLocal/Visitante`) = conteo de mapas ganados.
 > La serie termina cuando un equipo alcanza `ceil(bestOf/2)` mapas.
 
+### SolicitudReprogramacion
+| Campo | Tipo | Notas |
+|-------|------|-------|
+| id | UUID | PK |
+| partidoId | UUID | FK → Partido |
+| solicitanteEquipoId | UUID | FK → Equipo (quién pide) |
+| motivo | string | razón de la reprogramación |
+| fechaPropuesta | timestamp? | nueva fecha sugerida (opcional) |
+| estado | enum | `PENDIENTE`, `APROBADA`, `RECHAZADA` |
+| resueltaPorId | UUID? | admin que resolvió |
+| creadoEn | timestamp | — |
+
+> Solo el **admin** aprueba y mueve `Partido.fechaProgramada`. Ver
+> [12-formato-partido-y-dia-de-partido.md](./12-formato-partido-y-dia-de-partido.md).
+
 ### InvitacionEquipo
 | Campo | Tipo | Notas |
 |-------|------|-------|

@@ -47,6 +47,26 @@ Staff abre el partido EN_VIVO
 - Es **automático**: no requiere que un admin persiga a nadie (aunque el admin puede
   anular/ajustar si hubo causa justificada).
 
+## Reprogramación de partidos
+
+- Un partido tiene una **fecha programada**, pero puede reprogramarse **antes** de jugarse.
+- **El admin reprograma** (control central). Los **equipos solicitan** desde la app:
+  ```
+  Capitán solicita reprogramar (motivo + fecha propuesta opcional)
+    → SolicitudReprogramacion PENDIENTE
+    → Admin aprueba (mueve fechaProgramada) o rechaza
+    → notificación push a ambos equipos + webhook n8n (Discord)
+  ```
+- Reglas:
+  - Solo se puede solicitar mientras el partido esté `PROGRAMADO` (no iniciado).
+  - Al mover la fecha, se reasignan también los recordatorios/notificaciones.
+  - (Política afinar) límite de reprogramaciones por partido para evitar abuso.
+
+### Si ambos equipos no pueden jugar
+- Si **ninguno** se presenta o juega (ni a la hora ni reprogramando) →
+  `resultadoTipo = DOBLE_FORFEIT` automático.
+- El **admin puede anular** el doble forfeit si hubo **causa justificada** (o reprogramar).
+
 ## Resultados — staff final, sin disputa
 
 - El resultado lo captura **staff/caster/admin** desde el Admin Web (fuente oficial única).

@@ -14,6 +14,8 @@ El backend emite push ante estos eventos:
 | Inscripción aprobada | Capitán/roster | "Tu equipo fue aceptado en Temporada 1" |
 | Inscripción rechazada | Capitán | "Tu inscripción no fue aprobada" |
 | Partido programado | Ambos equipos | "Tu partido vs [rival] es el [fecha]" |
+| Partido reprogramado | Ambos equipos | "Tu partido se movió al [nueva fecha]" |
+| Rival definido (avance) | Equipo que avanza | "Tu próximo rival es [equipo]" |
 | Partido por empezar | Ambos equipos | "Tu partido empieza en 30 min · Canal: Temp League TV" |
 | Resultado publicado | Ambos equipos | "Resultado: [A] 2 - 1 [B]" |
 | Fin de ventana de transferencia | Jugador | "Ya puedes unirte a un nuevo equipo" |

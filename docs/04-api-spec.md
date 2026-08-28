@@ -90,7 +90,9 @@ API REST, JSON, prefijo `/api/v1`. Autenticación por **JWT** en header
 | POST | `/matches/:id/checkin` | capitán | Check-in de mi equipo (dentro de la ventana) |
 | POST | `/matches/:id/maps` | staff | Registrar resultado de un mapa (mapa+modo+ganador) |
 | PATCH | `/matches/:id/maps/:mapId` | staff | Corregir un mapa (solo admin corrige serie cerrada) |
-| POST | `/matches/:id/walkover` | admin | Marcar walkover / doble forfeit manual |
+| POST | `/matches/:id/reschedule-requests` | capitán | Solicitar reprogramación (motivo + fecha propuesta) |
+| PATCH | `/matches/:id/reschedule-requests/:reqId` | admin | Aprobar (mueve fecha) o rechazar |
+| POST | `/matches/:id/walkover` | admin | Marcar/anular walkover o doble forfeit |
 | PATCH | `/matches/:id/result` | staff/admin | Cerrar/ajustar serie (admin corrige si ya cerró) |
 
 ## 📊 Standings (formatos de liga)

@@ -1,5 +1,5 @@
 # apps/backend
 
-API REST de Temp League — Spring Boot + PostgreSQL.
+API de Temp League — NestJS + TypeScript.
 
-> Aun no inicializado. Ver docs raiz: /docs/02-arquitectura.md y /docs/04-api-spec.md
+> Aun no inicializado. Fase actual: planeacion. Ver /docs

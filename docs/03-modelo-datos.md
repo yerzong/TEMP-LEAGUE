@@ -1,49 +1,52 @@
 # 03 · Modelo de datos
 
-El diseño gira en torno a un concepto raíz flexible: el **Evento**. Un mismo motor
-soporta Temporadas y Relámpagos cambiando el `formato`.
+Diseño centrado en dos ideas:
+1. **Organización → Equipos/Rosters** (una marca puede tener varias alineaciones).
+2. Un **Evento** flexible cuyo `formato` define cómo se compite (motor de formatos).
 
 ## Diagrama entidad-relación (conceptual)
 
 ```
-┌─────────────┐        ┌──────────────┐        ┌─────────────┐
-│   Usuario   │◄──────►│  MiembroDe   │◄──────►│   Equipo    │
-│             │        │  (rol equipo)│        │             │
-│ id          │        └──────────────┘        │ id          │
-│ email       │                                │ nombre      │
-│ nickname    │                                │ tag         │
-│ rolGlobal   │                                │ capitanId   │
-└─────────────┘                                └──────┬──────┘
-                                                      │
-                                                      │ (via Inscripción)
-                                                      ▼
-┌───────────────────────────┐              ┌──────────────────┐
-│         Evento            │◄─────────────│   Inscripción    │
-│                           │  1        N  │                  │
-│ id                        │              │ id               │
-│ nombre                    │              │ eventoId         │
-│ tipo:  TEMPORADA|RELAMPAGO│              │ equipoId         │
-│ formato: (ver enum)       │              │ estado           │
-│ estado: (ver enum)        │              │ seed             │
-│ fechaInicio / fechaFin    │              └──────────────────┘
+┌─────────────┐   owner    ┌────────────────┐  1   N ┌──────────────┐
+│   Usuario   │───────────►│  Organización  │───────►│    Equipo    │
+│             │            │  (marca única) │        │  (Roster)    │
+│ id          │            │ id             │        │ id           │
+│ telefono ✔  │            │ nombre (uniq)  │        │ orgId        │
+│ nickname    │            │ tag (uniq)     │        │ nombre       │
+│ gamertag    │            │ logoUrl        │        │ capitanId    │
+│ rolGlobal   │            │ ownerId        │        └──────┬───────┘
+│ transferLock│            └────────────────┘               │
+└──────┬──────┘                                             │ miembros
+       │            ┌──────────────────────┐                │
+       └───────────►│   MiembroDeEquipo    │◄───────────────┘
+        (1 activo)  │ usuarioId · equipoId │
+                    │ rolEquipo · joinedAt │
+                    └──────────────────────┘
+
+┌───────────────────────────┐          ┌──────────────────────┐
+│         Evento            │◄─────────│     Inscripción      │
+│ id                        │  1    N  │ id · eventoId        │
+│ nombre                    │          │ equipoId (roster)    │
+│ tipo: TEMPORADA|RELAMPAGO │          │ estado               │
+│ formato                   │          │ seed                 │
+│ estado                    │          │ pagoEstado           │
+│ cuotaEntrada (0 = gratis) │          └──────────────────────┘
+│ moneda                    │
 │ maxEquipos                │
 └─────────────┬─────────────┘
-              │ 1
-              │ genera
-              │ N
+              │ 1 → N (motor de formatos)
               ▼
-┌───────────────────────────┐
-│         Partido           │
-│                           │
-│ id                        │
-│ eventoId                  │
-│ equipoLocalId             │
-│ equipoVisitanteId         │
-│ ronda / jornada           │
+┌───────────────────────────┐          ┌──────────────────────┐
+│         Partido           │─────────►│  CanalTransmisión    │
+│ id · eventoId             │  N    1  │ id · nombre          │
+│ equipoLocalId / VisitId   │          │ plataforma · url     │
+│ ronda / jornada           │          └──────────────────────┘
 │ fechaProgramada           │
 │ marcadorLocal / Visitante │
-│ estado: (ver enum)        │
-│ siguientePartidoId (elim.)│
+│ estado                    │
+│ siguientePartidoId (elim) │
+│ reportadoPorId (staff)    │
+│ canalTransmisionId        │
 └───────────────────────────┘
 ```
 
@@ -53,40 +56,60 @@ soporta Temporadas y Relámpagos cambiando el `formato`.
 | Campo | Tipo | Notas |
 |-------|------|-------|
 | id | UUID | PK |
-| email | string | único |
+| telefono | string | **único**; verificado por SMS OTP |
+| telefonoVerificado | bool | true tras validar OTP |
+| email | string? | opcional |
 | passwordHash | string | — |
-| nickname | string | nombre en juego / gamertag |
-| rolGlobal | enum | `PLAYER`, `ADMIN` |
+| nickname | string | nombre visible |
+| gamertag | string? | gamertag de Xbox (texto, MVP no valida con Xbox Live) |
+| avatarUrl | string? | foto de perfil |
+| pais | string | LATAM |
+| rolGlobal | enum | `PLAYER`, `STAFF`, `ADMIN` |
+| transferLockUntil | timestamp? | fin de la ventana de transferencia (72 h) |
 | creadoEn | timestamp | — |
 
-### Equipo
+### Organización (marca)
 | Campo | Tipo | Notas |
 |-------|------|-------|
 | id | UUID | PK |
-| nombre | string | — |
-| tag | string | abreviatura, ej. "TMP" |
-| logoUrl | string? | opcional |
+| nombre | string | **único** (case-insensitive) |
+| tag | string | **único**, abreviatura (ej. "ZRC") |
+| logoUrl | string? | — |
+| descripcion | string? | — |
+| ownerId | UUID | FK → Usuario (dueño) |
+| creadoEn | timestamp | — |
+
+### Equipo (Roster)
+| Campo | Tipo | Notas |
+|-------|------|-------|
+| id | UUID | PK |
+| orgId | UUID | FK → Organización |
+| nombre | string | ej. "Main", "Academy"; único dentro de la org |
 | capitanId | UUID | FK → Usuario |
 | creadoEn | timestamp | — |
 
-### MiembroDe (Usuario ↔ Equipo)
+### MiembroDeEquipo (Usuario ↔ Equipo)
 | Campo | Tipo | Notas |
 |-------|------|-------|
 | usuarioId | UUID | FK |
 | equipoId | UUID | FK |
 | rolEquipo | enum | `CAPITAN`, `JUGADOR` |
+| joinedAt | timestamp | — |
+
+> **Regla:** un usuario tiene **como máximo un MiembroDeEquipo activo** a la vez
+> (ver [reglas de negocio](./09-reglas-negocio.md)).
 
 ### Evento
 | Campo | Tipo | Notas |
 |-------|------|-------|
 | id | UUID | PK |
-| nombre | string | ej. "Temp League Temporada 1" |
+| nombre | string | — |
 | tipo | enum | `TEMPORADA`, `RELAMPAGO` |
 | formato | enum | `SINGLE_ELIM`, `DOUBLE_ELIM`, `ROUND_ROBIN`, `LEAGUE_PLAYOFFS` |
 | estado | enum | `BORRADOR`, `INSCRIPCIONES`, `EN_CURSO`, `FINALIZADO` |
-| fechaInicio | date | — |
-| fechaFin | date? | — |
-| maxEquipos | int | límite de inscripción |
+| cuotaEntrada | decimal | `0` = gratis; > 0 = requiere pago |
+| moneda | string | ej. "MXN" (aplica si hay cuota) |
+| maxEquipos | int | cupo |
 | creadoEn | timestamp | — |
 
 ### Inscripción (Equipo ↔ Evento)
@@ -94,13 +117,11 @@ soporta Temporadas y Relámpagos cambiando el `formato`.
 |-------|------|-------|
 | id | UUID | PK |
 | eventoId | UUID | FK |
-| equipoId | UUID | FK |
+| equipoId | UUID | FK (el roster inscrito) |
 | estado | enum | `PENDIENTE`, `APROBADA`, `RECHAZADA` |
-| seed | int? | siembra para el bracket (asignada por admin) |
+| pagoEstado | enum | `NO_APLICA`, `PENDIENTE`, `PAGADO` |
+| seed | int? | siembra para el bracket |
 | creadoEn | timestamp | — |
-
-> El **roster** por evento se deriva de los miembros del equipo al momento de inscribir
-> (en el MVP se toma el equipo completo; en v2 se podrá fijar roster por evento).
 
 ### Partido
 | Campo | Tipo | Notas |
@@ -109,40 +130,59 @@ soporta Temporadas y Relámpagos cambiando el `formato`.
 | eventoId | UUID | FK |
 | equipoLocalId | UUID? | null hasta conocerse (bracket) |
 | equipoVisitanteId | UUID? | null hasta conocerse |
-| ronda | int | ronda (elim.) o jornada (liga) |
+| ronda | int | ronda (elim.) / jornada (liga) |
 | fechaProgramada | timestamp? | — |
 | marcadorLocal | int? | — |
 | marcadorVisitante | int? | — |
 | estado | enum | `PROGRAMADO`, `EN_VIVO`, `FINALIZADO` |
-| siguientePartidoId | UUID? | a dónde avanza el ganador (solo eliminación) |
+| siguientePartidoId | UUID? | avance del ganador (solo eliminación) |
+| reportadoPorId | UUID? | staff/caster/admin que capturó el resultado |
+| canalTransmisionId | UUID? | canal donde se transmite |
 
-## Enums (contratos compartidos)
+### CanalTransmisión
+| Campo | Tipo | Notas |
+|-------|------|-------|
+| id | UUID | PK |
+| nombre | string | ej. "Temp League TV" |
+| plataforma | enum | `TWITCH`, `YOUTUBE` |
+| url | string | — |
+| activo | bool | — |
 
-Estos enums viven en `packages/shared` y se replican en backend, app y admin.
+### Pago *(v2, cuando se cobre entrada)*
+| Campo | Tipo | Notas |
+|-------|------|-------|
+| id | UUID | PK |
+| inscripcionId | UUID | FK |
+| monto | decimal | — |
+| proveedor | enum | `MERCADOPAGO`, `STRIPE` |
+| referencia | string | id de la transacción externa |
+| estado | enum | `PENDIENTE`, `PAGADO`, `FALLIDO`, `REEMBOLSADO` |
+
+## Enums (contratos compartidos — `packages/shared`)
 
 ```
+RolGlobal      = PLAYER | STAFF | ADMIN
+RolEquipo      = CAPITAN | JUGADOR
 TipoEvento     = TEMPORADA | RELAMPAGO
 FormatoEvento  = SINGLE_ELIM | DOUBLE_ELIM | ROUND_ROBIN | LEAGUE_PLAYOFFS
 EstadoEvento   = BORRADOR | INSCRIPCIONES | EN_CURSO | FINALIZADO
 EstadoInscrip. = PENDIENTE | APROBADA | RECHAZADA
+PagoEstado     = NO_APLICA | PENDIENTE | PAGADO | FALLIDO | REEMBOLSADO
 EstadoPartido  = PROGRAMADO | EN_VIVO | FINALIZADO
-RolGlobal      = PLAYER | ADMIN
-RolEquipo      = CAPITAN | JUGADOR
+Plataforma     = TWITCH | YOUTUBE
 ```
 
-## Reglas de negocio clave
+## Reglas de integridad clave
 
-1. Un evento solo genera partidos cuando pasa de `INSCRIPCIONES` a `EN_CURSO`.
-2. Solo inscripciones `APROBADA` entran a la generación de bracket/tabla.
-3. En eliminación, cerrar un partido (`FINALIZADO`) propaga el ganador a
-   `siguientePartidoId`.
-4. En liga (round-robin), la tabla de posiciones se calcula a partir de los partidos
-   `FINALIZADO` (victoria/derrota/diferencia).
-5. `maxEquipos` debe ser potencia de 2 para brackets de eliminación limpia (o se manejan
-   *byes*).
+1. `Organizacion.nombre` y `Organizacion.tag` son **únicos** (validación automática,
+   case-insensitive).
+2. Un usuario tiene **máximo un equipo activo**; para cambiar, respeta la **ventana de 72 h**.
+3. Solo inscripciones `APROBADA` (y `PAGADO` si hay cuota) entran a la generación de
+   bracket/tabla.
+4. El resultado de un partido solo lo captura un usuario `STAFF`/`ADMIN` (desde Admin Web);
+   se guarda en `reportadoPorId`.
+5. En eliminación, cerrar un partido propaga el ganador a `siguientePartidoId`.
+6. La **tabla de posiciones** en formatos de liga se calcula on-the-fly desde los partidos
+   `FINALIZADO` (v2: materializar si hace falta).
 
-## Tabla de posiciones (derivada, no almacenada en MVP)
-
-Para formatos de liga se calcula on-the-fly a partir de los partidos:
-`puntos`, `victorias`, `derrotas`, `diferencia de rondas`. Se puede materializar/cachear
-en v2 si hace falta rendimiento.
+Detalle completo de reglas y flujos en [09-reglas-negocio.md](./09-reglas-negocio.md).

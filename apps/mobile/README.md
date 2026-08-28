@@ -1,5 +1,5 @@
 # apps/mobile
 
-App de jugadores — Flutter (iOS + Android).
+App de jugadores — React Native (Expo).
 
-> Aun no inicializada. Ver docs raiz: /docs/01-vision-producto.md
+> Aun no inicializada. Fase actual: planeacion. Ver /docs/07-app-jugadores-spec.md

@@ -13,12 +13,14 @@ API REST, JSON, prefijo `/api/v1`. Autenticación por **JWT** en header
 
 ---
 
-## 🔐 Auth
+## 🔐 Auth (teléfono + SMS OTP)
 
 | Método | Ruta | Rol | Descripción |
 |--------|------|-----|-------------|
-| POST | `/auth/register` | público | Registro de jugador |
-| POST | `/auth/login` | público | Login → devuelve JWT |
+| POST | `/auth/register` | público | Registro con teléfono → envía SMS OTP |
+| POST | `/auth/otp/verify` | público | Verifica el código OTP → activa cuenta + JWT |
+| POST | `/auth/otp/resend` | público | Reenvía OTP (rate-limited) |
+| POST | `/auth/login` | público | Login (teléfono + contraseña) → JWT |
 | GET | `/auth/me` | autenticado | Perfil del usuario actual |
 
 ## 👤 Usuarios
@@ -26,17 +28,26 @@ API REST, JSON, prefijo `/api/v1`. Autenticación por **JWT** en header
 | Método | Ruta | Rol | Descripción |
 |--------|------|-----|-------------|
 | GET | `/users/:id` | autenticado | Ver perfil público de un jugador |
-| PATCH | `/users/me` | autenticado | Editar nickname / datos propios |
+| PATCH | `/users/me` | autenticado | Editar nickname / gamertag / avatar / país |
 
-## 🛡️ Equipos
+## 🏢 Organizaciones
 
 | Método | Ruta | Rol | Descripción |
 |--------|------|-----|-------------|
-| POST | `/teams` | autenticado | Crear equipo (el creador queda como CAPITAN) |
+| GET | `/orgs/check?nombre=&tag=` | autenticado | Validar unicidad de nombre/tag en vivo |
+| POST | `/orgs` | autenticado | Crear organización (creador = owner) |
+| GET | `/orgs/:id` | público | Detalle de org + sus equipos/rosters |
+| PATCH | `/orgs/:id` | owner | Editar org (logo, descripción) |
+
+## 🛡️ Equipos (rosters)
+
+| Método | Ruta | Rol | Descripción |
+|--------|------|-----|-------------|
+| POST | `/orgs/:orgId/teams` | owner | Crear equipo/roster en la org |
 | GET | `/teams/:id` | público | Detalle de equipo + roster |
-| PATCH | `/teams/:id` | capitán | Editar equipo (nombre, tag, logo) |
-| POST | `/teams/:id/members` | capitán | Invitar/agregar jugador |
-| DELETE | `/teams/:id/members/:userId` | capitán | Quitar jugador |
+| PATCH | `/teams/:id` | capitán/owner | Editar equipo |
+| POST | `/teams/:id/members` | capitán | Invitar/agregar jugador (valida 1-equipo + ventana 72h) |
+| DELETE | `/teams/:id/members/:userId` | capitán | Quitar jugador (activa ventana 72h) |
 
 ## 🏆 Eventos
 

@@ -9,13 +9,13 @@ temp-league/
 ├── .gitignore                # Ignora artefactos de Java, Node y Flutter
 │
 ├── apps/
-│   ├── backend/              # API REST — Spring Boot + PostgreSQL
-│   │   └── (Java 21, Maven/Gradle, controllers, services, motor de formatos)
+│   ├── backend/              # API REST — NestJS + Prisma + PostgreSQL
+│   │   └── (TypeScript, módulos: auth, orgs, equipos, eventos, partidos, motor de formatos)
 │   │
-│   ├── mobile/               # App de jugadores — Flutter
-│   │   └── (Dart, pantallas: login, equipos, eventos, partidos)
+│   ├── mobile/               # App de jugadores — React Native (Expo)
+│   │   └── (TypeScript, pantallas: login/OTP, equipos, eventos, partidos)
 │   │
-│   └── admin-web/            # Consola de administración — React + TS
+│   └── admin-web/            # Consola admin/staff — React + TS
 │       └── (gestión de eventos, aprobación de equipos, captura de resultados)
 │
 ├── packages/

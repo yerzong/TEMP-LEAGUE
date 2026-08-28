@@ -1,5 +1,5 @@
 # apps/admin-web
 
-Consola de administracion — React + TypeScript.
+Consola admin/staff — React + TypeScript.
 
-> Aun no inicializada. Ver docs raiz: /docs/04-api-spec.md
+> Aun no inicializada. Fase actual: planeacion. Ver /docs/08-admin-web-spec.md

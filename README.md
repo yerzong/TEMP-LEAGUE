@@ -25,8 +25,14 @@ Toda la planeación vive en [`/docs`](./docs). Léela en este orden:
 | 04 | [Especificación de API](./docs/04-api-spec.md) | Endpoints core del backend |
 | 05 | [Roadmap](./docs/05-roadmap.md) | Plan semana a semana hacia octubre |
 | 06 | [Estructura del monorepo](./docs/06-estructura-monorepo.md) | Qué vive en cada carpeta |
+| 07 | [Spec App Jugadores](./docs/07-app-jugadores-spec.md) | Pantallas, campos, flujos de la app móvil |
+| 08 | [Spec Admin Web](./docs/08-admin-web-spec.md) | Módulos y permisos de la consola admin/staff |
+| 09 | [Reglas de negocio](./docs/09-reglas-negocio.md) | Roles, unicidad, 1-equipo-por-jugador, ventana 72h, flujos |
+| 10 | [Notificaciones y automatización](./docs/10-notificaciones-y-automatizacion.md) | Push (FCM) y automatización con n8n |
 
-Las decisiones de arquitectura relevantes se registran como ADRs en [`/docs/adr`](./docs/adr).
+Las decisiones de arquitectura relevantes se registran como ADRs en [`/docs/adr`](./docs/adr):
+- [ADR-0001](./docs/adr/0001-motor-de-formatos.md) — Motor de formatos de evento
+- [ADR-0002](./docs/adr/0002-stack-typescript.md) — Stack TypeScript end-to-end (NestJS/RN/Prisma)
 
 ---
 
@@ -35,9 +41,9 @@ Las decisiones de arquitectura relevantes se registran como ADRs en [`/docs/adr`
 ```
 temp-league/
 ├── apps/
-│   ├── backend/      # API REST — Spring Boot + PostgreSQL
-│   ├── mobile/       # App de jugadores — Flutter (iOS + Android)
-│   └── admin-web/    # Consola de administración — React
+│   ├── backend/      # API REST — NestJS + Prisma + PostgreSQL
+│   ├── mobile/       # App de jugadores — React Native (Expo)
+│   └── admin-web/    # Consola admin/staff — React
 ├── packages/
 │   └── shared/       # Tipos/contratos compartidos (DTOs, enums)
 ├── docs/             # Toda la planeación y documentación
@@ -52,9 +58,13 @@ Ver el [Roadmap](./docs/05-roadmap.md) para el plan de ejecución.
 
 ## 🛠️ Stack
 
-- **Backend:** Java 21 · Spring Boot · PostgreSQL
-- **App móvil:** Flutter (Dart)
-- **Admin web:** React + TypeScript
+TypeScript de punta a punta:
+
+- **Backend:** NestJS (Node + TypeScript) · Prisma · PostgreSQL · Redis
+- **App móvil:** React Native (Expo) — experiencia de consumo del jugador
+- **Admin web:** React + TypeScript — operación de la liga (captura de resultados)
+- **Push:** Firebase Cloud Messaging · **SMS OTP:** Twilio/MessageBird
+- **Automatización:** n8n (Discord, redes, email)
 - **Infra:** por definir (Railway / Render candidatos)
 
 ---

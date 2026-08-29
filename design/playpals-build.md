@@ -100,13 +100,17 @@ HECHO (no requería publicar):
 - **Login (02) y Registro (03)**: divider + SSO Auth del kit (Button Secondary + Social Media
   Logo Google/Apple + Email) con logos reales. Listo.
 
-Pendiente (tras publicar Card Map Result, List Row, BottomBar TL y Status Bar TL):
-- Todas las pantallas (11): insertar **Status Bar TL** como primer hijo (arriba del Top Nav).
-- Detalle de partido (21): reemplazar las filas locales por Card Map Result.
-- Perfil (40): reemplazar las filas de menú locales por List Row.
-- Todas las pantallas con barra: cambiar BottomBar del kit por BottomBar TL con la variante
-  Active correcta (Home->Inicio, Eventos, Mi Equipo->Equipo, Perfil).
+HECHO (tras publicar los 4 componentes):
+- **Status Bar TL** insertada arriba en las 10 pantallas de contenido (Onboarding, Login,
+  Registro, OTP, Completa perfil, Home, Eventos, Detalle, Mi Equipo, Perfil). Splash no lleva.
+  Se restó 54px al paddingTop de las pantallas de auth para mantener el espaciado.
+- **BottomBar TL** con Active correcta en Home (Inicio), Eventos, Mi Equipo (Equipo), Perfil.
+- **Detalle de partido**: filas de mapa -> instancias de **Card Map Result**.
+- **Perfil**: menú -> instancias de **List Row** (Ajustes Default, Cerrar sesion Danger).
+
+Pendiente:
 - Imágenes reales (logos de equipo/foto de evento) en Home/Eventos/Detalle/Mi Equipo.
+- (Opcional) Logo de Xbox como asset si se quiere SSO Xbox en vez de Email.
 
 ## Aprendizajes técnicos (kit)
 - El placeholder del **Text Field** usa fuente **Outfit** (no Lexend): antes de escribir en

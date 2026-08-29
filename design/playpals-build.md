@@ -78,8 +78,12 @@ Página **App · Perfil** (node 20:222):
 Creados pegados al estilo del kit (outline h58/radius24, Card Background, Neutral/*, Brand/50)
 y bindeados a los paint styles del kit. **Pendiente: Gerson valida + republica la librería;
 luego se insertan en las pantallas de Temp League por key.**
-- **Social Button** (set, Provider=Google/Apple/Xbox): `3bff31c1ea7d56a955ae779a89cd37fb01260118`.
-  Outline. Capa `Icon` (badge blanco con inicial) a sustituir por el logo real de la marca.
+- ~~Social Button (mi versión con inicial)~~ **DESCARTADO por Gerson.** En su lugar se usa el
+  patrón **SSO Auth** nativo del kit (node 391:13944), que ya trae logos reales:
+  - Base: **Button** variante `Type=Secondary, Style=Default` (key `e41b683a17a016fb9dbd8ad8322512e2bf3e5e2f`; el set es `3732cb23...`).
+  - Icono: **Social Media Logo** (set `dcce8ba288d98d8ba2677adb5081b6792a02a7e5`) — Google `89e41851f210cc135ff5d35ccb614b68d95f8ae1`, Apple `266f01f6cc5892bd33436e1bc170d49e72e68352`. Email usa `vuesax/bold/sms` (`b1c82c2fe12298fec9c42f839e57664870d6f793`).
+  - Botones: "Continuar con Google", "Continuar con Apple", "Continuar con Email" (email = fallback del producto). No hay logo de Xbox en el kit; si se quiere, crear el asset.
+  - Estos building blocks YA están publicados en el kit -> se pueden usar en las pantallas sin republicar.
 - **Card Map Result** (set, State=Ganada/Perdida/Pendiente): `3efe31fd80f3ae2038ef84c95c38a77c1aae0843`.
   Fila BO por mapa. Capas editables: Number, Map, Mode, Score, Winner. Acento rojo en Ganada.
 - **List Row** (set, Tone=Default/Danger): `e4aa7df959dd376a65456040b72b0e43563c516e`.
@@ -87,8 +91,17 @@ luego se insertan en las pantallas de Temp League por key.**
 - **BottomBar TL** (set, Active=Inicio/Eventos/Equipo/Partidos/Perfil): `ab52a570bd5d3b5945f76f21e393c24e5d1a609b`.
   Reusa el BottomBar del kit; resalta en rojo la pestaña activa. Etiquetas en español.
 
-## Retrofit pendiente (tras publicar) en Temp League
-- Login (02) y Registro (03): añadir divider "o continua con" + Social Button (3 instancias).
+- **Status Bar TL** (component): `eae3f0c2cbf8a23fe1559cb9dcac2fa792df031c`. 390x54. Barra de
+  estado iOS (hora + señal/wifi/batería) recoloreada a blanco. La agregó Gerson (node 4407:13983
+  del kit) y se convirtió a componente. Va arriba de TODAS las pantallas.
+
+## Retrofit
+HECHO (no requería publicar):
+- **Login (02) y Registro (03)**: divider + SSO Auth del kit (Button Secondary + Social Media
+  Logo Google/Apple + Email) con logos reales. Listo.
+
+Pendiente (tras publicar Card Map Result, List Row, BottomBar TL y Status Bar TL):
+- Todas las pantallas (11): insertar **Status Bar TL** como primer hijo (arriba del Top Nav).
 - Detalle de partido (21): reemplazar las filas locales por Card Map Result.
 - Perfil (40): reemplazar las filas de menú locales por List Row.
 - Todas las pantallas con barra: cambiar BottomBar del kit por BottomBar TL con la variante

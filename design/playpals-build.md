@@ -39,9 +39,16 @@ Club Management UI Kit (UINeed)**, adaptado a los colores de Temp League.
 - Documentar todo aquí y en commits.
 
 ## Estructura de páginas (Temp League)
-- App · Onboarding + Auth (Splash, Onboarding, Login, Registro, OTP)
-- App · Home
-- (se agregan más flujos: Competiciones, Equipo, Perfil…)
+- App · Onboarding + Auth (Splash, Onboarding, Login, Registro, OTP, Completa perfil)
+- App · Home (10 · Home)
+- (se agregan más flujos: Eventos, Detalle de partido, Equipo, Perfil…)
+
+## Componentes de navegación del kit (keys)
+- Top Nav (component): `93c5c4f1fdd189653858bdbe32b0c7887ef3fe94`
+- BottomBar (component): `62a2b4dd0850c24ec65497b4130c2230bfe8cbf5`
+- Status Bar (set): `a0c410224e38bd59a8c0492bedf09ef309a132d3`
+- Dropdown (set): en kit pág. Design System — usar para selects (Región, etc.)
+- Tab Group Pills (component): `f0a627b4c7497c30a339955bfa7b6ae54fd5f618`
 
 ## Pantallas construidas
 Página **App · Onboarding + Auth** (node 7:222). Todas 390x844, bg acero, Lexend, componentes del kit:
@@ -51,6 +58,9 @@ Página **App · Onboarding + Auth** (node 7:222). Todas 390x844, bg acero, Lexe
 - **03 · Registro** — IconButton back, 4 Text Field (nombre, correo, teléfono con bandera, password), nota de términos, Button "Crear cuenta".
 - **04 · Verificacion OTP** — IconButton back, 4 Text Field Type=Code (SMS), reenvío con contador, Button "Verificar".
 - **05 · Completa tu perfil** — Avatar con badge de edición, 3 Text Field (nombre, gamertag Xbox, región), Button "Entrar a Temp League".
+
+Página **App · Home** (node 16:222):
+- **10 · Home** — Top Nav ("Hola, Dilan" + bell), Card Match en vivo (NOVA ESPORTS vs TEAM AZTECA, 1-0, Mapa 2, EN VIVO), fila de 2 Card Stat (Temporada Tier 2 / 1240 pts, Historial winrate 68% / 25 partidos), Card Competition (Copa E-Day 2026, OPEN), BottomBar (Inicio/Eventos/Mi Equipo/Partidos/Perfil). Pendiente: reemplazar logos/foto de muestra del kit por imágenes reales de equipos/Gears.
 
 ## Aprendizajes técnicos (kit)
 - El placeholder del **Text Field** usa fuente **Outfit** (no Lexend): antes de escribir en

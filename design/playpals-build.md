@@ -62,6 +62,25 @@ Página **App · Onboarding + Auth** (node 7:222). Todas 390x844, bg acero, Lexe
 Página **App · Home** (node 16:222):
 - **10 · Home** — Top Nav ("Hola, Dilan" + bell), Card Match en vivo (NOVA ESPORTS vs TEAM AZTECA, 1-0, Mapa 2, EN VIVO), fila de 2 Card Stat (Temporada Tier 2 / 1240 pts, Historial winrate 68% / 25 partidos), Card Competition (Copa E-Day 2026, OPEN), BottomBar (Inicio/Eventos/Mi Equipo/Partidos/Perfil). Pendiente: reemplazar logos/foto de muestra del kit por imágenes reales de equipos/Gears.
 
+Página **App · Eventos** (node 17:222):
+- **20 · Eventos** — Top Nav "Eventos", filtros Tab Group Pills (Todos/Temporada/Relampago), lista de 4 Card Competition (Copa E-Day 2026, Temporada Clausura, Relampago Nocturno, Winter Warm-Up) con badges OPEN/LLENO/CERRADO, BottomBar.
+
+Página **App · Detalle de partido** (node 18:222):
+- **21 · Detalle de partido** — Top Nav "Partido en vivo", Card Match hero (NOVA 2-1 AZTECA, BO5 Mapa 4, EN VIVO), lista de 5 filas de resultado por mapa (Mapa, modo, ganador, score), Button "Ver transmision". Las filas de mapa son composición local (Card bg + texto) -> formalizar como componente PlayPals "Card Map Result".
+
+Página **App · Mi Equipo** (node 19:222):
+- **30 · Mi Equipo** — Top Nav "Mi Equipo", header de equipo (Club Avatar, NOVA ESPORTS, [NOVA] Tier 2, 12V-3D / 1240 pts), lista Roster con 6 Card Player Type=Default (Capitan/Jugador/Suplente), Button Secondary "Gestionar roster", BottomBar.
+
+Página **App · Perfil** (node 20:222):
+- **40 · Perfil** — Top Nav "Perfil", header (Avatar, Dilan Garcia, @DilanYG, chip TIER 2 · Capitan), 2 Card Stat (Partidos 87/68%, Ranking 1240/#42), menú de ajustes (6 filas: Mi cuenta, Notificaciones, Historial, Palmares, Ajustes, Cerrar sesion), BottomBar. Las filas de menú son composición local -> formalizar como "List Row" en PlayPals.
+
+## Componentes a crear/formalizar en PlayPals (pendiente + republicar)
+- **Social buttons** (Google/Apple/Xbox) para Login/Registro.
+- **Card Map Result** (fila de resultado por mapa, BO5) — usado en Detalle de partido.
+- **List Row** (fila de menú con label + chevron) — usado en Perfil.
+- **BottomBar con estado activo por tab** (hoy el activo queda fijo en "Inicio"; idealmente
+  variantes Active=Inicio/Eventos/Equipo/Partidos/Perfil).
+
 ## Aprendizajes técnicos (kit)
 - El placeholder del **Text Field** usa fuente **Outfit** (no Lexend): antes de escribir en
   cualquier nodo de texto del kit, cargar la fuente del propio nodo vía

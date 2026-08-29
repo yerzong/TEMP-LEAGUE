@@ -3,9 +3,14 @@
 Inventario de componentes a diseñar, con sus estados. Derivado de las specs de app/admin
 (`/docs/07`, `/docs/08`). Cada componente usa **tokens**, nunca valores sueltos.
 
+## Estado de construcción (Figma "Prueba IA")
+- ✅ **Button** — set de 8 variantes (`Style`: Primary/Secondary/Ghost/Danger × `State`:
+  Default/Disabled) + propiedad de texto `label`. Todo bindeado a tokens. Página
+  "Components · Button". *(Pressed = opacidad en runtime RN, no variante.)*
+- ⏳ Input · Chip/Badge · Card de partido · Bracket · Tabla — pendientes.
+
 ## Base
-- **Botón** — variantes: primario, secundario, fantasma, peligro; estados: normal, hover,
-  presionado, deshabilitado, cargando.
+- **Botón** — ✅ construido (ver arriba). Variantes Style × State, label editable.
 - **Input / Select** — con validación en vivo (ej. unicidad de nombre de org), error, ayuda.
 - **Chip / Badge de estado** — inscripción, partido, tier, rol de equipo, bloqueos.
 - **Avatar / Logo de equipo** — con fallback.

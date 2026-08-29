@@ -1,10 +1,25 @@
 # Figma — Temp League
 
-⏳ **PENDIENTE.** Gerson proporcionará el proyecto de Figma. **No intervenir en Figma**
-hasta que el enlace esté aquí y se indique explícitamente.
+✅ **Proyecto recibido** (2026-08-28).
 
-## Cuando esté disponible
-- [ ] Enlace al archivo de Figma: _por definir_
+- **Archivo:** "Prueba IA" — es el proyecto de **Temp League** (nombre provisional; Gerson
+  lo renombrará al final si todo sale bien).
+- **Enlace:** https://www.figma.com/design/i24p8b0hdX8W9bpnAqeVYs/Prueba-ia?node-id=2-2
+
+> Antes de crear nada: **explorar el archivo (solo lectura)** y confirmar la piel visual
+> real (colores/tipografía Temp League) para actualizar los tokens.
+
+## Estado del build (design system)
+- [x] Enlace al archivo de Figma
+- [x] Dirección visual confirmada: **Saira Condensed + Inter**, piel Gears oscura, acento `#FF5A1F`
+- [x] Tokens de **color** (colección `Color`, modo Dark) — 13 variables
+- [x] Tokens de **espaciado y radios** (colección `Number`) — 12 variables
+- [x] **Estilos de tipografía** (Saira Condensed + Inter) — 9 estilos
+- [ ] Componentes base (botón, input, chip, card de partido, bracket, tabla)
+- [ ] Ensamblar pantallas desde la librería
+- [ ] Auditar consistencia (`/audit-design-system`)
+
+> Style tiles de exploración: `design/references/exports/style-tiles-v1.png` (elegida: **B, Saira Condensed**).
 - [ ] Confirmar/actualizar la dirección visual del [cerebro](../00-design-brain.md) con lo real.
 - [ ] Sincronizar **variables de Figma** con [`../design-system/tokens.md`](../design-system/tokens.md).
 - [ ] Mapear componentes de Figma con [`../design-system/components.md`](../design-system/components.md).

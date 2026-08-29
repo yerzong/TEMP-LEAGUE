@@ -51,8 +51,9 @@ visual de Gears/E-Day**. App premium y nativa, pero inconfundiblemente Temp Leag
 - No copiamos el look **claro/translúcido/calmado** de Apple que borraría la identidad Gears.
 - **Liquid Glass** se usa con mesura y **teñido a la marca** (no como estética dominante).
 
-- **Tipografía:** SF/San Francisco como referencia de calidad; un display con carácter para
-  títulos. Detalle final se confirma con el Figma de Gerson.
+- **Tipografía (confirmada):** **Saira Condensed** para display/títulos (look de liga/
+  broadcast deportivo) + **Inter** para texto/UI (calidad tipo SF, base 17px).
+- **Acento (confirmado):** E-Day `#FF5A1F` sobre base carbón `#0E0F12`.
 
 > Regla mental: **estructura/comportamiento = Apple · vestido/color/tono = Gears.**
 

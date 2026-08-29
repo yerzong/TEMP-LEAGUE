@@ -32,13 +32,29 @@ producto, modelo de datos, reglas, flujos, formato de partido, ranking, etc.
 6. **Accesibilidad:** contraste suficiente en tema oscuro, áreas táctiles ≥ 44px, texto
    legible.
 
-## 3. Dirección visual (hipótesis — se confirma con Figma)
+## 3. Dirección visual — "Calidad Apple + piel Gears" ⭐
 
-- **Tema:** oscuro dominante (acero/carbón) con acento **rojo/naranja E-Day**.
-- **Tono:** industrial, metálico, con tensión competitiva. Bordes marcados, contrastes altos.
-- **Tipografía:** display con carácter para títulos + sans legible para contenido/datos.
-- ⚠️ **Pendiente de confirmar con el Figma que Gerson proporcionará.** Hasta entonces, esto
-  es una hipótesis de trabajo, no dogma.
+**Principio rector:** adoptamos la **calidad y estructura de Apple (HIG)** con la **piel
+visual de Gears/E-Day**. App premium y nativa, pero inconfundiblemente Temp League.
+
+**De Apple (HIG) tomamos** — el "cómo":
+- Estructura, jerarquía y patrones de navegación probados.
+- **Grid y espaciado 8pt**, tipografía impecable y legible.
+- Componentes con **comportamiento nativo**, microinteracciones y motion sobrios.
+- **Accesibilidad** (contraste, áreas táctiles ≥44px, dynamic type) y claridad.
+
+**De Gears/E-Day tomamos la piel** — el "cómo se ve":
+- Tema **oscuro dominante** (acero/carbón) + acento **rojo/naranja E-Day**.
+- Textura industrial/metálica, tono competitivo, bordes marcados, contraste alto.
+
+**Lo que NO hacemos:**
+- No copiamos el look **claro/translúcido/calmado** de Apple que borraría la identidad Gears.
+- **Liquid Glass** se usa con mesura y **teñido a la marca** (no como estética dominante).
+
+- **Tipografía:** SF/San Francisco como referencia de calidad; un display con carácter para
+  títulos. Detalle final se confirma con el Figma de Gerson.
+
+> Regla mental: **estructura/comportamiento = Apple · vestido/color/tono = Gears.**
 
 ## 4. Marca
 
@@ -70,6 +86,14 @@ Reglas para todos:
 3. **Respeta los estados y las reglas de negocio** (gating, bloqueos, roles).
 4. **No toques Figma** hasta que el proyecto esté disponible y se indique explícitamente.
 5. Cuando exista Figma, **aliníate a Figma** como verdad visual.
+6. **Estructura/comportamiento = Apple (HIG) · piel = Gears.** Aplica las skills de Apple
+   (`apple-hig-designer`, `apple-design`) para calidad, patrones y accesibilidad — pero el
+   color, tono y textura salen de la piel Gears vía tokens. Nunca dejes que el look "Apple
+   limpio" sobrescriba la identidad de marca.
+
+Skills anti-drift y de estilo disponibles en `.claude/skills/` (ver `design/README.md`):
+consistencia (`audit`/`apply`/`fix-design-system`, `sync-figma-token`), estilo Apple
+(`apple-hig-designer`, `apple-design`) y revisión propia (`design-review`).
 
 ## 8. Estado actual
 

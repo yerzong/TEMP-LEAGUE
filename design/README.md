@@ -21,10 +21,28 @@ design/
 - **ui-visual-designer** — alta fidelidad, marca y tokens
 - **design-system-architect** — tokens y componentes
 
-## Skill
+## Skills (`.claude/skills/`)
 
-- **design-review** (`.claude/skills/`) — revisa una propuesta de UI contra el cerebro y el
-  design system.
+Propias:
+- **design-review** — revisa una propuesta de UI contra el cerebro y el design system.
+
+Instaladas (anti-drift, de terceros — ver créditos):
+- **audit-design-system** — audita un nodo de Figma buscando deriva (componentes no
+  reutilizados, overrides locales, tokens sin enlazar). Solo lectura.
+- **apply-design-system** — reconecta elementos sueltos a los componentes/tokens del sistema.
+- **fix-design-system-finding** — corrige un hallazgo específico de la auditoría.
+- **sync-figma-token** — sincroniza tokens entre código y variables de Figma (con reporte de
+  drift y gate de aprobación). Se invoca manualmente: `/sync-figma-token`.
+
+### Créditos y fuentes
+- `audit/apply/fix-design-system-*` — Chris Goebel · Edenspiekermann
+  ([github.com/edenspiekermann/Skills](https://github.com/edenspiekermann/Skills))
+- `sync-figma-token` — Anish Karthik · Firebender
+  ([github.com/firebenders/sync-figma-token-skill](https://github.com/firebenders/sync-figma-token-skill))
+- Colección: [Figma — 10 Claude Skills for Design](https://www.figma.com/resource-library/claude-skills-for-design/)
+
+> Estas skills usan las herramientas MCP de Figma; **operan sobre Figma solo cuando se
+> invocan explícitamente** y el proyecto esté disponible.
 
 ## Regla de oro
 

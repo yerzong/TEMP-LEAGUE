@@ -44,9 +44,27 @@ Club Management UI Kit (UINeed)**, adaptado a los colores de Temp League.
 - (se agregan más flujos: Competiciones, Equipo, Perfil…)
 
 ## Pantallas construidas
-- **00 · Splash** — bg acero + logo Temp League + wordmark. (pág. Onboarding + Auth)
+Página **App · Onboarding + Auth** (node 7:222). Todas 390x844, bg acero, Lexend, componentes del kit:
+- **00 · Splash** — bg acero + LogoMark (ícono rojo) + wordmark TEMP LEAGUE.
+- **01 · Onboarding** — panel rojo (gradiente) con LogoMark, título, subtítulo, page-dots, Button "Crear cuenta", link "Ya tengo cuenta".
+- **02 · Login** — LogoMark, título, Text Field correo + Text Field password, link "Olvidaste tu contraseña", Button "Iniciar sesion", link "Crear cuenta".
+- **03 · Registro** — IconButton back, 4 Text Field (nombre, correo, teléfono con bandera, password), nota de términos, Button "Crear cuenta".
+- **04 · Verificacion OTP** — IconButton back, 4 Text Field Type=Code (SMS), reenvío con contador, Button "Verificar".
+- **05 · Completa tu perfil** — Avatar con badge de edición, 3 Text Field (nombre, gamertag Xbox, región), Button "Entrar a Temp League".
+
+## Aprendizajes técnicos (kit)
+- El placeholder del **Text Field** usa fuente **Outfit** (no Lexend): antes de escribir en
+  cualquier nodo de texto del kit, cargar la fuente del propio nodo vía
+  `getStyledTextSegments(['fontName'])` + `loadFontAsync`, si no lanza "unloaded font".
+- Text Field: nodo de texto editable se llama `Text`; variantes Type=Default/Password/Phone Number/Code × State=Empty/Active/Filled.
+- Button: variante default `Type=Primary, Style=Default, Size=Default, State=Default`; el label es un TEXT interno (Lexend); trae ícono y flecha.
+- LogoMark importado renderiza como ícono de app rojo con el monograma (transparente, sirve como app-icon).
 
 ## Pendientes / notas
 - La Home v1 (armada antes del recolor) quedó verde; requiere aceptar "Update available"
   de la librería en Temp League para tomar el rojo.
-- Componentes faltantes detectados: (ninguno confirmado aún; el Text Field SÍ existe).
+- **Social login** (Google/Apple/Xbox) es prioridad de producto pero el kit no trae botones
+  sociales: hay que CREARLOS en PlayPals (Button Secondary + slot de ícono) y republicar
+  antes de añadirlos a Login/Registro.
+- Avatar default del kit es cuadrado-redondeado (no círculo); si se quiere circular, usar
+  otra variante o crear una en PlayPals.

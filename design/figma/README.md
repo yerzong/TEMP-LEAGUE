@@ -15,7 +15,7 @@
 - [x] Tokens de **color** (colección `Color`, modo Dark) — 13 variables
 - [x] Tokens de **espaciado y radios** (colección `Number`) — 12 variables
 - [x] **Estilos de tipografía** (Saira Condensed + Inter) — 9 estilos
-- [ ] Componentes base (botón, input, chip, card de partido, bracket, tabla)
+- [~] Componentes: ✅ Button · ✅ Chip · ✅ Match Card · ⏳ Input, Bracket, Tabla, Card de evento
 - [ ] Ensamblar pantallas desde la librería
 - [ ] Auditar consistencia (`/audit-design-system`)
 

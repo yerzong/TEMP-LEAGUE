@@ -4,10 +4,12 @@ Inventario de componentes a diseñar, con sus estados. Derivado de las specs de 
 (`/docs/07`, `/docs/08`). Cada componente usa **tokens**, nunca valores sueltos.
 
 ## Estado de construcción (Figma "Prueba IA")
-- ✅ **Button** — set de 8 variantes (`Style`: Primary/Secondary/Ghost/Danger × `State`:
-  Default/Disabled) + propiedad de texto `label`. Todo bindeado a tokens. Página
-  "Components · Button". *(Pressed = opacidad en runtime RN, no variante.)*
-- ⏳ Input · Chip/Badge · Card de partido · Bracket · Tabla — pendientes.
+- ✅ **Button** — 8 variantes (`Style` × `State`) + `label`. Bindeado a tokens.
+- ✅ **Chip/Badge** — 6 tonos (`Tone`: Neutral/Success/Warning/Danger/Info/Brand) + `label`.
+  Fondo tintado 16% + dot + texto en el color del tono.
+- ✅ **Match Card** — estado (instancia de Chip) + fecha, 2 equipos (logo+nombre+marcador),
+  divisor y canal. Compone el Chip. Surface oscura, tokens.
+- ⏳ Input · Bracket · Tabla de posiciones · Card de evento — pendientes.
 
 ## Base
 - **Botón** — ✅ construido (ver arriba). Variantes Style × State, label editable.

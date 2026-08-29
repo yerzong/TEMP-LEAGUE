@@ -74,12 +74,26 @@ Página **App · Mi Equipo** (node 19:222):
 Página **App · Perfil** (node 20:222):
 - **40 · Perfil** — Top Nav "Perfil", header (Avatar, Dilan Garcia, @DilanYG, chip TIER 2 · Capitan), 2 Card Stat (Partidos 87/68%, Ranking 1240/#42), menú de ajustes (6 filas: Mi cuenta, Notificaciones, Historial, Palmares, Ajustes, Cerrar sesion), BottomBar. Las filas de menú son composición local -> formalizar como "List Row" en PlayPals.
 
-## Componentes a crear/formalizar en PlayPals (pendiente + republicar)
-- **Social buttons** (Google/Apple/Xbox) para Login/Registro.
-- **Card Map Result** (fila de resultado por mapa, BO5) — usado en Detalle de partido.
-- **List Row** (fila de menú con label + chevron) — usado en Perfil.
-- **BottomBar con estado activo por tab** (hoy el activo queda fijo en "Inicio"; idealmente
-  variantes Active=Inicio/Eventos/Equipo/Partidos/Perfil).
+## Componentes NUEVOS creados en PlayPals (pág. Design System)
+Creados pegados al estilo del kit (outline h58/radius24, Card Background, Neutral/*, Brand/50)
+y bindeados a los paint styles del kit. **Pendiente: Gerson valida + republica la librería;
+luego se insertan en las pantallas de Temp League por key.**
+- **Social Button** (set, Provider=Google/Apple/Xbox): `3bff31c1ea7d56a955ae779a89cd37fb01260118`.
+  Outline. Capa `Icon` (badge blanco con inicial) a sustituir por el logo real de la marca.
+- **Card Map Result** (set, State=Ganada/Perdida/Pendiente): `3efe31fd80f3ae2038ef84c95c38a77c1aae0843`.
+  Fila BO por mapa. Capas editables: Number, Map, Mode, Score, Winner. Acento rojo en Ganada.
+- **List Row** (set, Tone=Default/Danger): `e4aa7df959dd376a65456040b72b0e43563c516e`.
+  Label + chevron. Danger = rojo (Cerrar sesion, etc.).
+- **BottomBar TL** (set, Active=Inicio/Eventos/Equipo/Partidos/Perfil): `ab52a570bd5d3b5945f76f21e393c24e5d1a609b`.
+  Reusa el BottomBar del kit; resalta en rojo la pestaña activa. Etiquetas en español.
+
+## Retrofit pendiente (tras publicar) en Temp League
+- Login (02) y Registro (03): añadir divider "o continua con" + Social Button (3 instancias).
+- Detalle de partido (21): reemplazar las filas locales por Card Map Result.
+- Perfil (40): reemplazar las filas de menú locales por List Row.
+- Todas las pantallas con barra: cambiar BottomBar del kit por BottomBar TL con la variante
+  Active correcta (Home->Inicio, Eventos, Mi Equipo->Equipo, Perfil).
+- Imágenes reales (logos de equipo/foto de evento) en Home/Eventos/Detalle/Mi Equipo.
 
 ## Aprendizajes técnicos (kit)
 - El placeholder del **Text Field** usa fuente **Outfit** (no Lexend): antes de escribir en

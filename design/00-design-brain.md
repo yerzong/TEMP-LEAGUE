@@ -32,10 +32,14 @@ producto, modelo de datos, reglas, flujos, formato de partido, ranking, etc.
 6. **Accesibilidad:** contraste suficiente en tema oscuro, áreas táctiles ≥ 44px, texto
    legible.
 
-## 3. Dirección visual — "Calidad Apple + piel Gears" ⭐
+## 3. Dirección visual — "Revolut premium, rojo Temp League" ⭐
 
-**Principio rector:** adoptamos la **calidad y estructura de Apple (HIG)** con la **piel
-visual de Gears/E-Day**. App premium y nativa, pero inconfundiblemente Temp League.
+**Principio rector:** estructura/comportamiento con **calidad Apple**, look **premium tipo
+Revolut** (dark, espacioso, esquinas grandes, sin bordes duros), y **rojo** como color de
+marca. App que se siente cara y confiable, inconfundiblemente Temp League.
+
+> ⚠️ Actualizado tras feedback: se descartó el naranja + Saira Condensed. Todo en **una
+> sola página** de Figma. Imágenes reales (no placeholders).
 
 **De Apple (HIG) tomamos** — el "cómo":
 - Estructura, jerarquía y patrones de navegación probados.
@@ -51,9 +55,15 @@ visual de Gears/E-Day**. App premium y nativa, pero inconfundiblemente Temp Leag
 - No copiamos el look **claro/translúcido/calmado** de Apple que borraría la identidad Gears.
 - **Liquid Glass** se usa con mesura y **teñido a la marca** (no como estética dominante).
 
-- **Tipografía (confirmada):** **Saira Condensed** para display/títulos (look de liga/
-  broadcast deportivo) + **Inter** para texto/UI (calidad tipo SF, base 17px).
-- **Acento (confirmado):** E-Day `#FF5A1F` sobre base carbón `#0E0F12`.
+- **Referencia de estilo (confirmada):** **Revolut** — dark premium, mucho aire, esquinas
+  grandes (20–24), sin bordes duros (superficies en lugar de líneas), jerarquía fuerte,
+  números grandes. Calidad Apple en estructura/comportamiento.
+- **Tipografía (confirmada):** **Inter** en todo (limpia, premium, pesos fuertes para
+  display/números). *(Saira Condensed se descartó: muy deportiva para el look Revolut.)*
+- **Acento (confirmado):** **ROJO `#FF2E3A`** (color principal de Temp League) sobre base
+  casi negra `#0A0B0D`.
+- **Imágenes:** avatares/logos reales (se generan vía API: DiceBear) e íconos reales
+  (lucide vía Iconify) — nada de placeholders.
 
 > Regla mental: **estructura/comportamiento = Apple · vestido/color/tono = Gears.**
 

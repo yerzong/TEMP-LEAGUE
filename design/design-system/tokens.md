@@ -1,22 +1,26 @@
 # Design Tokens — Temp League
 
 Fuente de verdad de los tokens. **Implementados como variables/estilos en Figma** (archivo
-"Prueba IA") y a materializar igual en código (RN/React). Dirección: **calidad Apple + piel
-Gears**. Nada de valores sueltos: todo sale de aquí.
+"Prueba IA", página única "Temp League") y a materializar igual en código (RN/React).
+Dirección: **Revolut premium + rojo**. Nada de valores sueltos: todo sale de aquí.
+
+> ⚠️ **Actualizado tras feedback:** color principal ahora **rojo `#FF2E3A`** (antes naranja),
+> base casi negra `#0A0B0D`, tipografía **Inter** en todo (se descartó Saira Condensed).
+> Los valores abajo reflejan lo nuevo (las variables en Figma ya están actualizadas).
 
 ## Color — colección `Color` (modo **Dark**)
 
 | Token (Figma) | Hex | Uso | Scopes |
 |---------------|-----|-----|--------|
-| `surface/bg` | `#0E0F12` | Fondo base (carbón) | FRAME/SHAPE fill |
-| `surface/surface` | `#16181D` | Cards / superficies | FRAME/SHAPE fill |
-| `surface/elevated` | `#1E2127` | Superficie elevada | FRAME/SHAPE fill |
-| `border/default` | `#2A2E35` | Bordes / divisores | STROKE |
-| `text/primary` | `#F2F3F5` | Texto principal | TEXT fill |
-| `text/muted` | `#9AA0A6` | Texto secundario | TEXT fill |
+| `surface/bg` | `#0A0B0D` | Fondo base (casi negro) | FRAME/SHAPE fill |
+| `surface/surface` | `#131519` | Cards / superficies | FRAME/SHAPE fill |
+| `surface/elevated` | `#1B1E23` | Superficie elevada | FRAME/SHAPE fill |
+| `border/default` | `#24272E` | Bordes / divisores (sutil) | STROKE |
+| `text/primary` | `#F5F6F7` | Texto principal | TEXT fill |
+| `text/muted` | `#8A9099` | Texto secundario | TEXT fill |
 | `text/on-primary` | `#FFFFFF` | Texto sobre acento | TEXT fill |
-| `brand/primary` | `#FF5A1F` | Acción principal / marca (E-Day) | fill/text/stroke |
-| `brand/primary-pressed` | `#E64A12` | Estado presionado | FRAME/SHAPE fill |
+| `brand/primary` | `#FF2E3A` | Acción principal / marca (ROJO) | fill/text/stroke |
+| `brand/primary-pressed` | `#E01E2B` | Estado presionado | FRAME/SHAPE fill |
 | `status/success` | `#2ECC8F` | Éxito / victoria | fill/text |
 | `status/warning` | `#F5A524` | Aviso | fill/text |
 | `status/danger` | `#E5484D` | Error / derrota | fill/text |

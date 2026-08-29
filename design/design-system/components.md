@@ -13,6 +13,7 @@ Atomos:
 - Chip (Tone: Brand/Success/Warning/Info/Neutral) + label
 - Stat Tile (props value, label)
 - Icon Button (glass, slot "icon")
+- Back Button (glass + chevron)
 - Avatar (circular, fill = imagen)
 - Input (State: Default/Focus/Error) + text
 - Logo Tile (tile claro, slot "image")
@@ -26,8 +27,22 @@ Moleculares (genericos):
 - Match Card (compone Chip + Logo Tile + Button)
 - Tab Bar (flotante glass; compone 5 Tab Bar Item)
 
-Pendiente: reconstruir la Home con instancias de estos componentes; luego Foundations
-(tokens visuales) y demas pantallas.
+## Paginas del proyecto Figma (por categoria)
+Cover · Foundations · Components · App — Jugadores · Admin — Web · Brand (logo).
+
+## Pantallas construidas (App — Jugadores)
+Flujo inicial (component-driven): 00 Splash · 00b Onboarding · 01 Bienvenida · 02 Login ·
+03 Completa tu perfil · 04 Verificacion OTP. Ademas: Home (final, glass + contenido rico).
+
+## Foundations
+Pagina Foundations con swatches de color bindeados a tokens (+ hex), escala tipografica
+(Inter) y espaciado 8pt.
+
+## Pendiente
+- Reconstruir Home con instancias de Match Card / Stat Tile (anti-drift total).
+- Mas pantallas: Eventos, Detalle de partido, Mi Equipo, Perfil.
+- Assets de imagen (logos/fotos/iconos) viven en Figma; los exports/screenshots en
+  design/references/exports/.
 
 ## Base
 - **Botón** — ✅ construido (ver arriba). Variantes Style × State, label editable.

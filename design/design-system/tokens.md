@@ -21,6 +21,12 @@ Gears**. Nada de valores sueltos: todo sale de aquí.
 | `status/warning` | `#F5A524` | Aviso | fill/text |
 | `status/danger` | `#E5484D` | Error / derrota | fill/text |
 | `status/info` | `#3B9EFF` | Info | fill/text |
+| `*-tint` (6) | pre-mezcla 16% sobre `bg` | Fondos tintados de chips (success/warning/danger/info/brand/muted) | FRAME/SHAPE fill |
+
+> **Tint tokens:** `status/success-tint #132D26 · warning-tint #332715 · danger-tint #30181B ·
+> info-tint #152638 · brand/primary-tint #351B14 · text/muted-tint #26262A`. Son sólidos
+> (el 16% ya viene "horneado") porque la opacidad de un paint **no se hereda bien en
+> instancias** de Figma — con tokens sólidos, las instancias siempre se ven correctas.
 
 > Modo único **Dark** por ahora. La estructura permite añadir un modo claro después sin
 > tocar los componentes (solo se agregan valores al mismo token).

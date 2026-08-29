@@ -26,7 +26,7 @@ design/
 Propias:
 - **design-review** — revisa una propuesta de UI contra el cerebro y el design system.
 
-Instaladas (anti-drift, de terceros — ver créditos):
+Instaladas — anti-drift (de terceros, ver créditos):
 - **audit-design-system** — audita un nodo de Figma buscando deriva (componentes no
   reutilizados, overrides locales, tokens sin enlazar). Solo lectura.
 - **apply-design-system** — reconecta elementos sueltos a los componentes/tokens del sistema.
@@ -34,11 +34,21 @@ Instaladas (anti-drift, de terceros — ver créditos):
 - **sync-figma-token** — sincroniza tokens entre código y variables de Figma (con reporte de
   drift y gate de aprobación). Se invoca manualmente: `/sync-figma-token`.
 
+Instaladas — estilo Apple (de terceros, ver créditos):
+- **apple-hig-designer** — **crea** UI estilo Apple (HIG, SF typography, SF Symbols,
+  **Liquid Glass iOS 26**), multiplataforma. Trae referencias (components, patterns, liquid-glass).
+- **apple-design** — **revisa** diseños contra la HIG de Apple; soporta React Native. Incluye
+  biblioteca HIG completa (dark mode, tipografía, materiales, accesibilidad…).
+
 ### Créditos y fuentes
 - `audit/apply/fix-design-system-*` — Chris Goebel · Edenspiekermann
   ([github.com/edenspiekermann/Skills](https://github.com/edenspiekermann/Skills))
 - `sync-figma-token` — Anish Karthik · Firebender
   ([github.com/firebenders/sync-figma-token-skill](https://github.com/firebenders/sync-figma-token-skill))
+- `apple-hig-designer` — tristan-mcinnis
+  ([github.com/tristan-mcinnis/apple-hig-designer-skill-2026](https://github.com/tristan-mcinnis/apple-hig-designer-skill-2026))
+- `apple-design` — dickwu
+  ([github.com/dickwu/apple-design-skill](https://github.com/dickwu/apple-design-skill))
 - Colección: [Figma — 10 Claude Skills for Design](https://www.figma.com/resource-library/claude-skills-for-design/)
 
 > Estas skills usan las herramientas MCP de Figma; **operan sobre Figma solo cuando se

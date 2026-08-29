@@ -3,13 +3,31 @@
 Inventario de componentes a diseñar, con sus estados. Derivado de las specs de app/admin
 (`/docs/07`, `/docs/08`). Cada componente usa **tokens**, nunca valores sueltos.
 
-## Estado de construcción (Figma "Prueba IA")
-- ✅ **Button** — 8 variantes (`Style` × `State`) + `label`. Bindeado a tokens.
-- ✅ **Chip/Badge** — 6 tonos (`Tone`: Neutral/Success/Warning/Danger/Info/Brand) + `label`.
-  Fondo tintado 16% + dot + texto en el color del tono.
-- ✅ **Match Card** — estado (instancia de Chip) + fecha, 2 equipos (logo+nombre+marcador),
-  divisor y canal. Compone el Chip. Surface oscura, tokens.
-- ⏳ Input · Bracket · Tabla de posiciones · Card de evento — pendientes.
+## Estado de construccion (Figma, pagina "Components")
+
+Librería reconstruida sobre la direccion final (Liquid Glass + rojo). Todo bindeado a
+tokens. Atomos y genericos primero; los moleculares componen los atomos como instancias.
+
+Atomos:
+- Button (Variant: Primary/Glass/Ghost) + label
+- Chip (Tone: Brand/Success/Warning/Info/Neutral) + label
+- Stat Tile (props value, label)
+- Icon Button (glass, slot "icon")
+- Avatar (circular, fill = imagen)
+- Input (State: Default/Focus/Error) + text
+- Logo Tile (tile claro, slot "image")
+- Section Header (prop label)
+- Divider
+- Tab Bar Item (State: Active/Inactive) + label
+
+Moleculares (genericos):
+- Card (panel glass generico)
+- List Row (leading + title/subtitle + trailing; props title/subtitle)
+- Match Card (compone Chip + Logo Tile + Button)
+- Tab Bar (flotante glass; compone 5 Tab Bar Item)
+
+Pendiente: reconstruir la Home con instancias de estos componentes; luego Foundations
+(tokens visuales) y demas pantallas.
 
 ## Base
 - **Botón** — ✅ construido (ver arriba). Variantes Style × State, label editable.

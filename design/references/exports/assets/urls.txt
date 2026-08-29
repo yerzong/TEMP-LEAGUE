@@ -1,0 +1,4 @@
+real-c9 https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Cloud9_logo.svg/330px-Cloud9_logo.svg.png?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+real-g2 https://upload.wikimedia.org/wikipedia/en/thumb/1/12/Esports_organization_G2_Esports_logo.svg/330px-Esports_organization_G2_Esports_logo.svg.png?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+real-t1 https://upload.wikimedia.org/wikipedia/en/thumb/f/f9/T1_logo.svg/330px-T1_logo.svg.png?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail
+real-tl https://upload.wikimedia.org/wikipedia/en/thumb/f/f1/Team_Liquid_logo.svg/330px-Team_Liquid_logo.svg.png?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail

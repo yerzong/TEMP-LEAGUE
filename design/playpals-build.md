@@ -108,9 +108,30 @@ HECHO (tras publicar los 4 componentes):
 - **Detalle de partido**: filas de mapa -> instancias de **Card Map Result**.
 - **Perfil**: menú -> instancias de **List Row** (Ajustes Default, Cerrar sesion Danger).
 
+## Imágenes reales (HECHO)
+Se reemplazaron las imágenes de muestra del kit por assets reales (subidos vía upload_assets,
+guardados en `~/Downloads/tl-assets/`):
+- **Crestas de equipo** (DiceBear initials PNG 240px): NOVA (`82be00f3…`, monograma NE) y
+  AZTECA (`7f9af0fc…`, NE roja). Aplicadas en Card Match de Home y Detalle, y en la cabecera
+  de Mi Equipo. Técnica: ocultar el `Club Avatar` de muestra (vectores), redondear el frame
+  `Avatar` (cornerRadius 999 + clip) y poner la cresta como IMAGE fill.
+- **Fotos de evento** (esports/gaming, Unsplash): `59c99722…`, `0c1f13d4…`, `0e2b8b30…`.
+  Aplicadas en Card Competition de Home y rotadas en las 4 de Eventos.
+- **Fotos de jugadores** (randomuser.me): 5 hashes aplicados a los 6 Card Player del roster.
+
+Aprendizaje: al **republicar** la librería, las instancias de componentes del kit con
+imágenes (p.ej. avatar de Card Player) pierden la imagen (los image fills no viajan entre
+archivos). Solución: reasignar un IMAGE fill propio (subido a este archivo). El avatar de
+Perfil (otra variante) sí conservó su imagen.
+
+upload_assets NO puede apuntar a sublayers de instancia (su `nodeId` sólo acepta `\d+[:-]\d+`).
+Workaround: subir sin nodeId (crea frames temporales), leer el `imageHash` y aplicarlo con
+use_figma a los nodos objetivo (`fills=[{type:'IMAGE',scaleMode:'FILL',imageHash}]`), luego
+borrar los frames temporales.
+
 Pendiente:
-- Imágenes reales (logos de equipo/foto de evento) en Home/Eventos/Detalle/Mi Equipo.
 - (Opcional) Logo de Xbox como asset si se quiere SSO Xbox en vez de Email.
+- (Opcional) Crestas para más equipos en tabla/eventos si se agregan.
 
 ## Aprendizajes técnicos (kit)
 - El placeholder del **Text Field** usa fuente **Outfit** (no Lexend): antes de escribir en

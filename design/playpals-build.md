@@ -108,6 +108,31 @@ HECHO (tras publicar los 4 componentes):
 - **Detalle de partido**: filas de mapa -> instancias de **Card Map Result**.
 - **Perfil**: menú -> instancias de **List Row** (Ajustes Default, Cerrar sesion Danger).
 
+## Pantallas adicionales (build completo de la app)
+Cada flujo en su propia página. Todas 390x844, Status Bar TL arriba, contenido Gears.
+- **App · Notificaciones** — `50 · Notificaciones`: Card Notification (Invitation/Competition/
+  Announcement/Badge) con Aceptar/Rechazar, contexto Gears.
+- **App · Detalle de evento** — `22 · Detalle de evento`: hero con foto + chip, tabla de info
+  (fecha/formato/cupo/premio/entrada), descripción, botón "Inscribir a mi equipo".
+- **App · Inscripcion** — `23 · Inscripcion`: card de equipo + selección de roster (fotos +
+  checkbox rojo, 5 titulares/1 suplente), "Confirmar inscripcion".
+- **App · Check-in** — `24 · Check-in`: header de partido (crestas), contador 12:34, estado de
+  roster (Listo/Pendiente), botón "Hacer check-in".
+- **App · Tabla de posiciones** — `60`: header de columnas + 8 filas con crest-monograma,
+  NOVA resaltada.
+- **App · Playoffs** — `61`: Card Bracket por rondas (Cuartos/Semis/Final).
+- **App · Ranking** — `62`: pills (Equipos/Jugadores/Regiones) + secciones por Tier con filas
+  ranked y puntos.
+- **App · Salon de la Fama** — `63`: campeón vigente (card gradiente) + campeones anteriores.
+- **App · Crear equipo** — `31`: subida de logo, Nombre/Tag (nota de unicidad)/Region
+  (Dropdown del kit), "Crear equipo".
+- **App · Ajustes** — `41`: List Row agrupadas (Cuenta/Notificaciones con toggles/Preferencias/
+  Legal) + Cerrar sesion (Danger).
+- **App · Historial** — `42`: pills (Todos/Ganados/Perdidos) + Card Match con crestas reales
+  por rival (NOVA vs Halcones/Azteca/Reapers/Kraken/Lobos) y resultado.
+
+Inventario total: **22 pantallas** (6 auth + 5 core + 4 eventos + 4 competencia + 3 gestión).
+
 ## Imágenes reales (HECHO)
 Se reemplazaron las imágenes de muestra del kit por assets reales (subidos vía upload_assets,
 guardados en `~/Downloads/tl-assets/`):
@@ -118,6 +143,9 @@ guardados en `~/Downloads/tl-assets/`):
 - **Fotos de evento** (esports/gaming, Unsplash): `59c99722…`, `0c1f13d4…`, `0e2b8b30…`.
   Aplicadas en Card Competition de Home y rotadas en las 4 de Eventos.
 - **Fotos de jugadores** (randomuser.me): 5 hashes aplicados a los 6 Card Player del roster.
+- **Crestas de rivales** (DiceBear): Halcones `8f3a641e…`, Kraken `f7d08464…`, Reapers
+  `762cc981…`, Lobos MX `d4a2567d…` — usadas en Historial. Hashes NOVA `82be00f3…`,
+  AZTECA `7f9af0fc…`. Fotos de evento `59c99722…`/`0c1f13d4…`/`0e2b8b30…`.
 
 Aprendizaje: al **republicar** la librería, las instancias de componentes del kit con
 imágenes (p.ej. avatar de Card Player) pierden la imagen (los image fills no viajan entre

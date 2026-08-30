@@ -193,6 +193,26 @@ Página **App · Auth v2 (Welcome + Login)** (node 73:222), inspirada en los flu
 - **F1/F2/F3 · Recuperar contraseña** — correo → código (4 Text Field Type=Code + reenvío) →
   nueva contraseña + confirmar. (Como el flujo Forgot Password del kit.)
 
+**Perfil enriquecido + validacion gamertag + pickers (2026-08-30, decision Gerson):**
+- **Completa perfil en 2 pasos** (reemplaza P1/P2):
+  - **PA1/PA2 · Identidad**: foto, Nombre(s), Apellidos, Nombre de usuario (@handle unico, con
+    check "Disponible" en verde), Fecha de nacimiento (Dropdown -> date picker). Paso 1 de 2.
+  - **PB1/PB2 · Gaming**: **Vincular cuenta de Xbox** (boton verde Xbox #107C10 con logo real de
+    Xbox importado como SVG) -> estado vinculado muestra gamertag "DilanYG" + "Verificado con Xbox"
+    (check verde). Region (Dropdown). Paso 2 de 2.
+- **Validacion del gamertag = vincular cuenta de Xbox (OAuth)**, NO se escribe a mano. Si el
+  usuario entra con login de Xbox queda auto-vinculado. **Xbox NO es metodo de login** (login sigue
+  Google/Apple/Email); Xbox solo se vincula en el perfil para verificar el gamertag.
+- **usuario != gamertag**: usuario = @handle en Temp League (unico, editable); gamertag = identidad
+  de Xbox (verificada).
+- **Seccion 8 · Selectores (bottom sheets)**: SH1 Region (lista de paises LATAM, seleccion con
+  check rojo), SH2 Lada de telefono (paises + codigo), SH3 Fecha (date picker tipo ruedas
+  dia/mes/año). Base: componente Bottom Sheet del kit (384:11427). Prototipo: tocar el campo abre
+  el sheet (DISSOLVE) y Confirmar regresa.
+- Logo de **Xbox**: SVG de Wikimedia subido via upload_assets (se importa como vector editable,
+  se recolorea a blanco). Asset en `~/Downloads/tl-assets/xbox1.svg`.
+- Flujo del perfil (prototipo): Verificar telefono (OTP) -> PA Identidad -> PB Gaming -> Cargando.
+
 **Reestructura del flujo auth/onboarding (2026-08-30, decision Gerson):**
 Se separo AUTENTICACION (varia por metodo) del ONBOARDING (igual para todos), porque el
 Registro duplicaba datos con Completa Perfil y no aplicaba a los usuarios sociales.

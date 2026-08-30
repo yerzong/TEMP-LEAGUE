@@ -174,6 +174,18 @@ Pendiente:
   `setProperties({'Icon#5588:177': arrowLeftComp.id})` con `vuesax/outline/arrow-left`
   (`be32bc7b11176c493e4ec72422c6aa7a77495f9f`). Aplicado en Registro/OTP/Completa perfil.
 
+## Auth v2 — Welcome + Login (2026-08-30, a gusto de Gerson)
+Página **App · Auth v2 (Welcome + Login)** (node 73:222), inspirada en los flujos WELCOME
+(kit 336:10751) y LOGIN (kit 391:19670) que le gustaron a Gerson, adaptados a Temp League:
+- **W1/W2/W3** — carrusel de onboarding: imagen esports grande (redondeada), "Saltar", dots,
+  título + subtítulo, botón Continuar/Empezar. (Encuentra tu liga / Arma tu escuadra / Salon de la Fama).
+- **L0 · Login (SSO)** — logo + TEMP LEAGUE + 3 botones sociales (Google/Apple/Email), estilo del
+  Login del kit que prefirió.
+- **L1 · Login correo (vacio)** y **L2 · Login correo (lleno)** — el "Login with email": header,
+  labels (Correo/Contraseña), Text Field, checkbox "Mantener sesion", "Olvidaste tu contraseña",
+  botón Iniciar sesion, footer Registrate. Dos estados: **placeholder** vs **inputs llenos**
+  (correo escrito, password en dots, checkbox marcado) usando variantes State=Empty/Filled del Text Field.
+
 ## Correcciones de validacion (2da ronda, 2026-08-30)
 - **"+" en todos los botones**: era el `Icon Left` (add-circle) del Button del kit. Fix:
   `setProperties({'Has Icon Left#5588:152': false})` en todos los Button NO-SSO (11 botones).

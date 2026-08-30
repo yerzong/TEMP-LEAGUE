@@ -185,6 +185,18 @@ Página **App · Auth v2 (Welcome + Login)** (node 73:222), inspirada en los flu
   labels (Correo/Contraseña), Text Field, checkbox "Mantener sesion", "Olvidaste tu contraseña",
   botón Iniciar sesion, footer Registrate. Dos estados: **placeholder** vs **inputs llenos**
   (correo escrito, password en dots, checkbox marcado) usando variantes State=Empty/Filled del Text Field.
+- **R1/R2 · Registro (vacio/lleno)** — nombre, correo, teléfono, contraseña + términos + Crear cuenta
+  + "o registrate con" (Google/Apple) + footer Inicia sesion. Lleno: datos + password en dots
+  (el campo Phone Filled requiere limpiar el nodo de formato "(000)…" y poner el número).
+- **P1/P2 · Completa perfil (vacio/lleno)** — avatar (placeholder punteado vs foto real) + badge,
+  Nombre para mostrar, Gamertag de Xbox, Region, botón Entrar a Temp League.
+- **F1/F2/F3 · Recuperar contraseña** — correo → código (4 Text Field Type=Code + reenvío) →
+  nueva contraseña + confirmar. (Como el flujo Forgot Password del kit.)
+
+**Nota (decision Gerson):** Auth v2 es el look OFICIAL de acceso. NO cambia la lógica/flujo del
+producto (definido en `/docs`): SSO Google/Apple + correo, verificación por SMS OTP, completar
+perfil con gamertag, recuperación de contraseña. La página vieja "App · Onboarding + Auth" queda
+como referencia previa (se puede archivar cuando Gerson confirme).
 
 ## Correcciones de validacion (2da ronda, 2026-08-30)
 - **"+" en todos los botones**: era el `Icon Left` (add-circle) del Button del kit. Fix:

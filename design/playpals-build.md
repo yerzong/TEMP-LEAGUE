@@ -193,6 +193,21 @@ Página **App · Auth v2 (Welcome + Login)** (node 73:222), inspirada en los flu
 - **F1/F2/F3 · Recuperar contraseña** — correo → código (4 Text Field Type=Code + reenvío) →
   nueva contraseña + confirmar. (Como el flujo Forgot Password del kit.)
 
+**Legal + Recuperar llenos + prototipo (2026-08-30):**
+- **F1b/F2b/F3b · Recuperar (llenos)** — versiones con datos: correo escrito, codigo 8-2-4-1
+  (Text Field Type=Code State=Filled), contraseñas en `●`. Fila 2 de la seccion Recuperar.
+- **Seccion 6 · Legal**: **LG1 · Terminos y Condiciones** y **LG2 · Aviso de Privacidad** con
+  contenido real de Temp League (aceptacion, cuentas, roster, resultados staff-final, conducta/
+  sanciones, datos ARCO, terceros Google/Apple/Xbox/FCM, etc.).
+- **Prototipo Auth v2 (19 links, misma pagina)**: Welcome->Login->formularios->Recuperar. Accesos:
+  - **Recuperar contraseña**: Login "Olvidaste tu contraseña?" -> F1 -> F2 (codigo) -> F3 (nueva) -> Login.
+  - **Terminos/Privacidad**: texto "Al continuar aceptas..." en L0/R1/R2 -> LG1 (Terminos). En
+    Ajustes las filas "Terminos"/"Privacidad" apuntan a LG1/LG2 (navegacion del producto).
+  - **Limite Figma**: NAVIGATE solo funciona entre frames de la MISMA pagina. Por eso el link de
+    Ajustes (otra pagina) a Legal no se puede cablear como prototipo; queda en el flujo documentado.
+    Para un prototipo 100% clickeable de toda la app habria que consolidar en una pagina o usar
+    Code Connect / el routing real de la app.
+
 **Ajustes de validacion (Auth v2):**
 - **Splash** (S0) y **Cargando** (L3) agregados: logo + spinner `Loading Style=Primary`
   (`f177a342d5412fbdd766651a60e9c3a10154fd09`) + version / "Configurando tu cuenta...".

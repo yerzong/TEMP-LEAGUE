@@ -161,6 +161,19 @@ Pendiente:
 - (Opcional) Logo de Xbox como asset si se quiere SSO Xbox en vez de Email.
 - (Opcional) Crestas para más equipos en tabla/eventos si se agregan.
 
+## Correcciones de validacion (2026-08-30, feedback de Gerson)
+- **Status Bar TL con fondo blanco**: el componente/instancias tenian fill blanco solido -> se
+  veia un bloque blanco arriba. Fix: fill del componente en el kit a transparente (`fills=[]`) y
+  override de las 21 instancias en Temp League a transparente. Iconos ya en blanco (contrastan
+  sobre el fondo acero).
+- **Logo descentrado en Splash/Onboarding**: al redimensionar el LogoMark con `resize()` el
+  glifo interno (`logo temp`) NO escala (queda 58x34 pegado arriba-izquierda). Fix: recrear la
+  instancia y usar `node.rescale(factor)` (escala el nodo Y sus hijos), no `resize()`. En
+  Onboarding ademas se quito el fill del LogoMark para que el glifo quede sobre el panel gradiente.
+- **Boton atras con icono equivocado**: el IconButton por defecto trae `vuesax/bold/image`. Fix:
+  `setProperties({'Icon#5588:177': arrowLeftComp.id})` con `vuesax/outline/arrow-left`
+  (`be32bc7b11176c493e4ec72422c6aa7a77495f9f`). Aplicado en Registro/OTP/Completa perfil.
+
 ## Aprendizajes técnicos (kit)
 - El placeholder del **Text Field** usa fuente **Outfit** (no Lexend): antes de escribir en
   cualquier nodo de texto del kit, cargar la fuente del propio nodo vía

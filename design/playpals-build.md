@@ -193,12 +193,16 @@ Página **App · Auth v2 (Welcome + Login)** (node 73:222), inspirada en los flu
 - **F1/F2/F3 · Recuperar contraseña** — correo → código (4 Text Field Type=Code + reenvío) →
   nueva contraseña + confirmar. (Como el flujo Forgot Password del kit.)
 
-**Fix visual de secciones (2026-08-30):** las Figma Sections traian fill **blanco** por defecto
--> se veian bloques blancos y los frames oscuros parecian desalineados/faltantes. Fix: fill de las
-8 secciones a oscuro (`#111318`). Los frames ya estaban perfectamente alineados (x=40/490/940/1390,
-y=90, misma altura por seccion). NOTA: `node.screenshot()` sobre una SECTION grande renderiza mal
-(cajas apiladas, dims incorrectas) — es limitacion de la API, no del diseño; validar con screenshot
-de frames individuales, no de la seccion completa.
+**GOTCHA CRITICO — coordenadas dentro de una Figma SECTION (2026-08-30):** los hijos de una
+`SECTION` usan coordenadas **RELATIVAS al origen de la seccion**, NO absolutas de pagina. Si al
+posicionar un frame dentro de una seccion le pones la Y absoluta (p.ej. `curY+90`), Figma le SUMA
+la Y de la seccion otra vez y el frame cae ~seccion.y px por debajo (fuera de la caja). Sintoma:
+la seccion se ve como un rectangulo vacio y las pantallas quedan flotando abajo. **Fix / regla:
+dentro de una seccion, x/y de los frames van relativos a la seccion (y=90, x=40+col*450), NO
+curY+90.** (La seccion Welcome enmascaraba el bug por estar en y=0.) Ademas: fill de las 8 secciones
+puesto en oscuro (`#111318`) — venian en blanco por defecto. NOTA: `node.screenshot()` sobre una
+SECTION grande renderiza mal (limitacion de la API); validar con posiciones (absoluteBoundingBox)
+o screenshot de frames individuales.
 
 **Perfil enriquecido + validacion gamertag + pickers (2026-08-30, decision Gerson):**
 - **Completa perfil en 2 pasos** (reemplaza P1/P2):

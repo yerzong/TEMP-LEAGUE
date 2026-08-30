@@ -174,6 +174,22 @@ Pendiente:
   `setProperties({'Icon#5588:177': arrowLeftComp.id})` con `vuesax/outline/arrow-left`
   (`be32bc7b11176c493e4ec72422c6aa7a77495f9f`). Aplicado en Registro/OTP/Completa perfil.
 
+## Correcciones de validacion (2da ronda, 2026-08-30)
+- **"+" en todos los botones**: era el `Icon Left` (add-circle) del Button del kit. Fix:
+  `setProperties({'Has Icon Left#5588:152': false})` en todos los Button NO-SSO (11 botones).
+  Los SSO se saltan (ahi el Icon Left es el logo de marca).
+- **Logo de Google con fondo blanco**: el instance de Social Media Logo (Google) tiene fill
+  blanco propio + 2 vectores quedaron en gris por el recolor previo. Fix: `fills=[]` en el
+  instance (transparente) + recolorear los 2 grises a azul (66,133,244) y verde (52,168,83)
+  de Google. (Login y Registro.)
+- **Boton atras (estilo)**: se cambio el IconButton rojo por una **flecha simple** blanca
+  (`vuesax/outline/arrow-left`) al estilo del Top Nav del kit (node 295:6922 = Top Nav con
+  LeadingItem Type=Icon + CenterItem Type=Text). Aplicado en Registro/OTP/Completa perfil.
+- **Pantallas completas (sin recorte)**: cada frame se fijo a `max(844, alturaContenido)` con
+  `clipsContent=false`; el contenedor de scroll con `layoutGrow=1` para anclar barras/botones
+  abajo. Splash centrado y Onboarding con hero que llena. Las pantallas con mucho contenido
+  crecen verticalmente (Eventos 1420, Playoffs 1041, Mi Equipo 988, Home 969, Historial 956).
+
 ## Aprendizajes técnicos (kit)
 - El placeholder del **Text Field** usa fuente **Outfit** (no Lexend): antes de escribir en
   cualquier nodo de texto del kit, cargar la fuente del propio nodo vía

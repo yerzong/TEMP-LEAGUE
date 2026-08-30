@@ -193,6 +193,21 @@ Página **App · Auth v2 (Welcome + Login)** (node 73:222), inspirada en los flu
 - **F1/F2/F3 · Recuperar contraseña** — correo → código (4 Text Field Type=Code + reenvío) →
   nueva contraseña + confirmar. (Como el flujo Forgot Password del kit.)
 
+**Reestructura del flujo auth/onboarding (2026-08-30, decision Gerson):**
+Se separo AUTENTICACION (varia por metodo) del ONBOARDING (igual para todos), porque el
+Registro duplicaba datos con Completa Perfil y no aplicaba a los usuarios sociales.
+- **Autenticacion**: Social = 1 toque (Google/Apple/Xbox, SIN contraseña); Correo = correo +
+  contraseña + confirmar (SOLO eso — se quitaron nombre y telefono del Registro).
+- **Onboarding (para TODOS los metodos)**:
+  1. **Verificar telefono** (paso propio): V1/V1b numero -> V2/V2b codigo SMS OTP. Obligatorio
+     para social y correo (anti-duplicados).
+  2. **Completa perfil**: nombre, gamertag Xbox, region, foto (nombre/foto se pre-llenan si es social).
+- La **contraseña** solo existe en el flujo por correo; los sociales no tienen contraseña.
+- Nueva **seccion 4 · Verificar telefono**; secciones renumeradas en orden de flujo (1 Welcome,
+  2 Login, 3 Registro, 4 Verificar telefono, 5 Completa perfil, 6 Recuperar, 7 Legal).
+- Prototipo recableado (27 links): Social->Verificar telefono; Correo->Login o Registro->Verificar
+  telefono; Verificar->OTP->Completa perfil->Cargando.
+
 **Legal + Recuperar llenos + prototipo (2026-08-30):**
 - **F1b/F2b/F3b · Recuperar (llenos)** — versiones con datos: correo escrito, codigo 8-2-4-1
   (Text Field Type=Code State=Filled), contraseñas en `●`. Fila 2 de la seccion Recuperar.

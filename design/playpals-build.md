@@ -193,6 +193,24 @@ Página **App · Auth v2 (Welcome + Login)** (node 73:222), inspirada en los flu
 - **F1/F2/F3 · Recuperar contraseña** — correo → código (4 Text Field Type=Code + reenvío) →
   nueva contraseña + confirmar. (Como el flujo Forgot Password del kit.)
 
+**Ajustes de validacion (Auth v2):**
+- **Splash** (S0) y **Cargando** (L3) agregados: logo + spinner `Loading Style=Primary`
+  (`f177a342d5412fbdd766651a60e9c3a10154fd09`) + version / "Configurando tu cuenta...".
+- **Checkbox**: se reemplazo el checkbox custom por el **componente Checkbox del kit**
+  (set `f5ecd85cbdd080a0ac971fa49110424ad5da3e27`; True `9606eaaa…`, False `a2dabd6f…`) en el
+  Login (Mantener sesion) y en el roster de Inscripcion (6). Regla: usar el componente Checkbox
+  en todo el proyecto.
+- **Contraseña**: los inputs llenos usan `●` (U+25CF, circulos negros) en vez de `•` (bullets
+  chiquitos que se veian mal). Variante Text Field Type=Password State=Filled.
+- **Espaciado**: en el Login se movieron las opciones (checkbox/olvidaste) dentro del Form y se
+  puso gap **32** en Content (como el kit) para que el footer "No tienes cuenta" respire.
+- **Subida de foto de perfil** (Completa perfil): avatar 112px con icono de camara
+  (`vuesax/bold/camera` `9f4756bc…`), badge rojo con camara y texto "Agregar foto de perfil" /
+  "Cambiar foto". Empty = circulo punteado con camara; Filled = foto real.
+- **Secciones**: la pagina Auth v2 se organizo en 5 **Figma Sections** (1 Welcome, 2 Login,
+  3 Registro, 4 Completa perfil, 5 Recuperar contrasena), dimensionadas para envolver cada flujo
+  (excepcion a la regla de "no usar sections": aqui Gerson las pidio y quedan limpias).
+
 **Nota (decision Gerson):** Auth v2 es el look OFICIAL de acceso. NO cambia la lógica/flujo del
 producto (definido en `/docs`): SSO Google/Apple + correo, verificación por SMS OTP, completar
 perfil con gamertag, recuperación de contraseña. La página vieja "App · Onboarding + Auth" queda

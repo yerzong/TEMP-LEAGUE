@@ -346,3 +346,19 @@ equipos); dueño y jugador son roles independientes (puedes ser ambos). Estados 
 - Los 4 estados (A/B/C/D) estan en la pagina App · Home, en fila. El `10 · Home` original queda como referencia (equivale al estado B).
 Home muestra solo 2-3 competiciones relevantes (con "Ver todas" -> Eventos). El header usa el
 patron del kit "Top Nav LeadingItem Type=Profile" (avatar + Bienvenido + nombre), replicado custom.
+
+## Armonizacion de chips/iconos/portadas (2026-08-30, feedback Gerson)
+Las cards del kit tenian elementos que no cuadraban con el contexto (esports/Gears) ni con el rojo:
+- **Chips (badges)**: el "EN VIVO" tenia fondo VERDE (101,213,73) del kit. Fix project-wide: EN VIVO
+  = rojo solido + texto blanco (urgente); resto (ABIERTO/LLENO/CERRADO/PROX) = rojo-tinte
+  (#351B1E) + texto rojo (soft). Aplicado a 21 chips en Home/Eventos/Detalle/Historial.
+- **Iconos de Card Stat**: eran de **pickleball** (deporte). Swap a **game/gamepad** y **chart**
+  (gaming) via `instance.swapComponent()`. Keys: game `88a86a1a…`, chart-2 `96bbc3c9…`.
+- **Trofeo de la fecha (Card Competition)**: venia amarillo/naranja. Recoloreado a blanco
+  (monocromo, sigue leyendo "torneo").
+- **Fotos de portada**: eran fotos de gaming genericas. Se les puso un **duotono rojo de marca**
+  (overlay GRADIENT_LINEAR rojo, blendMode MULTIPLY) sobre el image fill (multi-fill en el mismo
+  rect) -> quedan tipo "Temp League", no stock. Aplicado a Card Competition (Home/Eventos/Detalle
+  de evento) y a los slides del carrusel Welcome (se ve premium/cohesivo).
+Iconos gaming disponibles para futuro: cup `ff896c81…`, flash `71769aa7…` (relampago), medal-star
+`728efd99…`, ranking `64147fd9…`, crown `2e62b837…`, status-up `2a73a5a8…`.

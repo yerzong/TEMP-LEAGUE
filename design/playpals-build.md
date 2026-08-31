@@ -340,8 +340,9 @@ equipos); dueño y jugador son roles independientes (puedes ser ambos). Estados 
 - **A) Cuenta nueva** (sin equipo/sin org): solo Competiciones abiertas + CTA "Crear/Buscar equipo".
   Construido: `10 · Home (cuenta nueva)` (App · Home). Header de bienvenida (avatar + saludo +
   campana), CTA card roja, Card Competition (TEMP LEAGUE T1, TEMP RELAMPAGO 1) + "Ver todas".
-- **B) Jugador** (equipo, sin org): proximo partido + tu equipo + competiciones relevantes.
-- **C) Dueño** (org+equipo): partidos de tus equipos + gestion + competiciones.
-- **D) Ambos:** combinado.
+- **B) Jugador** (equipo, sin org): `10 · Home (jugador)` — proximo partido (Card Match con crestas) + tu equipo (card compacta) + competiciones + Ver todas.
+- **C) Dueño** (org+equipo): `10 · Home (dueno)` — card de organizacion (crest + 2 equipos + Administrar) + proximos partidos de tus equipos (2 Card Match) + competiciones.
+- **D) Ambos:** `10 · Home (ambos)` — tu proximo partido (jugador) + card de organizacion + competiciones.
+- Los 4 estados (A/B/C/D) estan en la pagina App · Home, en fila. El `10 · Home` original queda como referencia (equivale al estado B).
 Home muestra solo 2-3 competiciones relevantes (con "Ver todas" -> Eventos). El header usa el
 patron del kit "Top Nav LeadingItem Type=Profile" (avatar + Bienvenido + nombre), replicado custom.

@@ -333,3 +333,15 @@ como referencia previa (se puede archivar cuando Gerson confirme).
   antes de añadirlos a Login/Registro.
 - Avatar default del kit es cuadrado-redondeado (no círculo); si se quiere circular, usar
   otra variante o crear una en PlayPals.
+
+## Home por estado de usuario (2026-08-30, analisis Gerson)
+Modelo de roles: jugador = 1 equipo activo; dueño = 1 organizacion (v1, la org puede tener varios
+equipos); dueño y jugador son roles independientes (puedes ser ambos). Estados del Home:
+- **A) Cuenta nueva** (sin equipo/sin org): solo Competiciones abiertas + CTA "Crear/Buscar equipo".
+  Construido: `10 · Home (cuenta nueva)` (App · Home). Header de bienvenida (avatar + saludo +
+  campana), CTA card roja, Card Competition (TEMP LEAGUE T1, TEMP RELAMPAGO 1) + "Ver todas".
+- **B) Jugador** (equipo, sin org): proximo partido + tu equipo + competiciones relevantes.
+- **C) Dueño** (org+equipo): partidos de tus equipos + gestion + competiciones.
+- **D) Ambos:** combinado.
+Home muestra solo 2-3 competiciones relevantes (con "Ver todas" -> Eventos). El header usa el
+patron del kit "Top Nav LeadingItem Type=Profile" (avatar + Bienvenido + nombre), replicado custom.

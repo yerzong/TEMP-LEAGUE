@@ -193,6 +193,22 @@ Página **App · Auth v2 (Welcome + Login)** (node 73:222), inspirada en los flu
 - **F1/F2/F3 · Recuperar contraseña** — correo → código (4 Text Field Type=Code + reenvío) →
   nueva contraseña + confirmar. (Como el flujo Forgot Password del kit.)
 
+**Ajustes de perfil (2026-08-30, feedback Gerson):**
+- **Iconos de los Text Field**: venian TODOS con el icono de correo (sms) por defecto. Se corrigio
+  con el swap `Left Icon#5606:40` -> `setProperties({'Left Icon#5606:40': iconId})`. Iconos por
+  campo: Nombre/Apellidos = `user` (`382493dd…`), Usuario = `tag` (`99cb2088…`), Fecha = `calendar`
+  (`f056ed8c…`), Nacionalidad = `flag` (`821175a2…`), Correo = `sms`, Contraseña = `lock`,
+  Telefono = phone (variante). **REGLA: al crear un Text Field, setear el Left Icon acorde al campo,
+  no dejar el sms por defecto.**
+- **Fecha de nacimiento**: ya NO es un Dropdown/select; es un Text Field con icono de **calendario**
+  (placeholder DD / MM / AAAA) que abre el date picker (SH3).
+- **Region -> Nacionalidad**: se renombro y se **movio a Completa perfil / Paso A (Identidad)** con
+  icono de bandera; el picker SH1 se renombro "Selecciona tu nacionalidad".
+- **Xbox OPCIONAL** (Paso B Gaming): chip "OPCIONAL" + boton "Omitir por ahora". Razon (Gerson):
+  no todos compiten; un dueño de organizacion puede solo crear/administrar un equipo. Vincular Xbox
+  (gamertag verificado) es necesario SOLO para competir; se puede hacer despues. Se quito region de
+  este paso.
+
 **GOTCHA CRITICO — coordenadas dentro de una Figma SECTION (2026-08-30):** los hijos de una
 `SECTION` usan coordenadas **RELATIVAS al origen de la seccion**, NO absolutas de pagina. Si al
 posicionar un frame dentro de una seccion le pones la Y absoluta (p.ej. `curY+90`), Figma le SUMA

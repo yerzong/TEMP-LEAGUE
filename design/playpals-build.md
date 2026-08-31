@@ -362,3 +362,15 @@ Las cards del kit tenian elementos que no cuadraban con el contexto (esports/Gea
   de evento) y a los slides del carrusel Welcome (se ve premium/cohesivo).
 Iconos gaming disponibles para futuro: cup `ff896c81…`, flash `71769aa7…` (relampago), medal-star
 `728efd99…`, ranking `64147fd9…`, crown `2e62b837…`, status-up `2a73a5a8…`.
+
+## Card de Evento enriquecida (2026-08-30, feedback Gerson)
+La Card Competition del kit no comunicaba el evento. Se creo una **Card Evento** custom (en Eventos,
+reemplaza las 4 del kit):
+- **Portada** (foto + duotono rojo) con **logo Temp League** (LogoMark, arriba-izq) y **chip de
+  estado** (arriba-der: ABIERTO solido / LLENO / CERRADO rojo-tinte).
+- **Titulo** + fila meta con **tipo e icono** (copa `ff896c81` = Temporada, rayo `71769aa7` =
+  Relampago) + **region** (icono location).
+- Footer: **formato** (Eliminacion/Liga · BO5/BO3) + **cupo** (12/32, en rojo).
+- La card completa es tappable -> Detalle de evento (nav cross-page pendiente por limite de Figma).
+Pendiente: formalizar como componente "Card Evento" en PlayPals y propagar a Home (hoy Home usa la
+Card Competition del kit).

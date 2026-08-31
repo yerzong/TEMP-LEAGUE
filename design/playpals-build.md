@@ -193,6 +193,14 @@ Página **App · Auth v2 (Welcome + Login)** (node 73:222), inspirada en los flu
 - **F1/F2/F3 · Recuperar contraseña** — correo → código (4 Text Field Type=Code + reenvío) →
   nueva contraseña + confirmar. (Como el flujo Forgot Password del kit.)
 
+**Xbox: separacion de botones + desvincular (2026-08-30, feedback Gerson):**
+- PB1 (Gaming vacio): "Omitir por ahora" ahora es un **boton secundario** (Button Secondary
+  Style=Text) dentro de un frame Actions con gap 10 debajo del primario (antes estaba pegado).
+- PB2 (Gaming vinculado): la tarjeta de Xbox tiene un **boton de eliminar (trash rojo)** para
+  cambiar/quitar la cuenta si te equivocaste. Abre **SH4 · Confirmar desvincular** (sheet: icono
+  trash, "Desvincular tu Xbox?", "Si, desvincular" [Danger] / "Cancelar"). Wire: trash -> SH4;
+  "Si, desvincular" -> PB1 (desvinculado); "Cancelar" -> PB2. Icono trash `451fa01b…`.
+
 **Ajustes de perfil (2026-08-30, feedback Gerson):**
 - **Iconos de los Text Field**: venian TODOS con el icono de correo (sms) por defecto. Se corrigio
   con el swap `Left Icon#5606:40` -> `setProperties({'Left Icon#5606:40': iconId})`. Iconos por
